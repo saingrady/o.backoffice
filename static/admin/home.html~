@@ -196,11 +196,12 @@
 		<script type="text/javascript" src="../js/jquery.tool.validator.js"></script> 
 		<script type="text/javascript" src="../js/jquery-ui-1.10.3.custom.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.iframe-post-form.js"></script>
 		<script type="text/javascript" src="../js/jquery.tmpl.js"></script>
 		<script type="text/javascript" src="../js/jquery-gmaps-latlon-picker.js"></script> 
         <script type="text/javascript" src="../js/jquery-ui-sliderAccess.js"></script>
        	<script type="text/javascript" src="../js/jquery-ui-timepicker-addon.js"></script>
-
+		<script type="text/javascript" src="../js/jquery.classchange.js"></script> 
 				
         <!-- Template 
 		================================================== -->
