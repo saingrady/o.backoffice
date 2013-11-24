@@ -1,0 +1,39 @@
+<!-- 
+Remarks:
+1. DOM should have id and name
+2. DOM should have class requestData 
+ -->
+
+<!-- Table
+================================================== -->
+<div class="container">
+
+	<!-- <table class="table table-bordered">  -->
+	<table id="table" class="table table-bordered">
+		<tr>
+			<td><label>Id</label></td>
+			<td><input type="text" id="id" name="id" class="requestData mode-read" required="required"></input></td>
+		</tr>
+		<tr>
+			<td><label>Name</label></td>
+			<td><input type="text" id="name" name="name" class="requestData mode-read" required="required"></input></td>
+		</tr>
+		<tr>
+			<td><label>Desc</label></td>
+			<td><textarea rows="5" cols="50" id="desc" name="desc" class="requestData mode-read" required="required"></textarea></td>
+		</tr>
+		
+	</table>
+
+</div>
+
+
+
+<script type="text/javascript">
+	// best page loaded callback, auto initialize page 
+	$(function() {
+		//book.initBook();
+		//book.initRecord();
+		BaseBackoffice.basket.initRecord();
+	});
+</script>

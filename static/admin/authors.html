@@ -1,0 +1,60 @@
+<!-- Add New
+================================================== -->
+<div class="link_title">
+	<div style="float: right;">
+		<!-- 
+		<div class="btn-group" data-toggle="buttons-checkbox">
+		    <button id="filter-btn" name="filter-btn" type="button" class="btn btn-primary"><i class="icon-filter icon-white"></i>Filters</button>
+		</div>
+		 -->
+		<button id="add-new-btn" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create Author</button>
+
+	</div>
+</div>
+
+<!-- Filter bar
+================================================== -->
+<div id="filters" class="alert" style="margin-bottom: 0px; display: none;">
+    <span>TODO</span>
+    <span style="float: right;">
+        <button id="apply-btn" name="apply-btn" class="btn btn-warning btn-small" style=""><span>Apply</span></button>
+        <button id="clear-btn" name="clear-btn" class="btn btn-warning btn-small" style=""><span>Clear</span></button>
+    </span>
+</div>
+
+<!-- Pager
+================================================== -->
+<!-- 
+<div id="authorsPager">
+	<ul class="pager" style="margin: 4px; text-align: right;">
+	  <li><a id="previous-lnk">Previous</a></li>
+          <span id="pagePosition"></span>
+	  <li><a id="next-lnk">Next</a></li>
+	</ul>
+</div>
+ -->
+ 
+<!-- Tables
+================================================== -->
+<table id="tables" class="table table-hover table-striped">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+	<th>Desc</th>
+    <!-- <th>Actions</th>  -->
+    <th></th>
+  </tr>
+
+</table>
+
+<script type="text/javascript">
+
+	// best page loaded callback, auto initialize page 
+	$(function() {
+		//initXXX();
+		//book.initBooks();
+		//book.initRecords();
+		BaseBackoffice.basket.initRecords(true);
+	});
+	
+</script>

@@ -1,0 +1,174 @@
+<!-- Templates here -->
+<!-- customize a style outside later by addClass method -->
+
+<!-- Image Form HTML Template -->
+<!--
+    form
+    img
+    input
+    button
+ -->
+<script id="imageFormTemplate" type="text/x-jQuery-tmpl">
+    <form method="POST" name="${formName}" id="${formName}" enctype="multipart/form-data">
+        <label class="name">Flag</label>
+        <img alt="" src="" class="preview" id="${imgName}" name="${imgName}">
+        <input type="file" id="${inputName}" name="${inputName}">
+        <button id="${buttonName}">Upload file</button>
+    </form>
+</script>
+
+<!-- Collection HTML Template -->
+<script id="collectionTemplate" type="text/x-jQuery-tmpl">
+<div id="collection_1" >
+    <!-- <div style="border-bottom: 1px solid;"> -->
+    <div>
+        <span class="no">1</span>
+        <span style="float:right;" class="delete-icon"></span>
+        <span style="float:right;" class="down-icon"></span>
+        <span style="float:right;" class="up-icon"></span>
+        <hr style="margin: 0px;">
+    </div>
+    <span>
+        <img id="" src=""></img>
+    </span>
+    <div>
+        <label class="name">Title</label>
+        <input type="text"></input> 
+        <br>
+        <label class="name">Description</label>
+        <textarea rows="4" cols="50"></textarea>
+    </div>
+</div>
+</script>
+
+
+<!-- Script must be in order:
+1 Base API
+2 Backoffices already loaded in home.html
+3 Listeners
+4 Converters
+-->
+
+<!-- Base Script Template -->
+<script id="baseScriptTemplate" type="text/x-jQuery-tmpl">
+		<script id="baseAPIScript" type="text/javascript" src="../js/api/base.api.js"> {{html "</sc"+"ript>"}}
+		<script id="baseBackofficeScript" type="text/javascript" src="../js/backoffice/base.backoffice.js"> {{html "</sc"+"ript>"}}
+		<script id="baseListenerScript" type="text/javascript" src="../js/listener/base.listener.js"> </script>
+		<script id="converterScript" type="text/javascript" src="../js/util/convertor.js"> {{html "</sc"+"ript>"}}
+</script>
+
+<!-- Home Script Template -->
+<script id="homeScriptTemplate" type="text/x-jQuery-tmpl">
+		<script id="homeBackofficeScript" type="text/javascript" src="../js/backoffice/home.backoffice.js"> {{html "</sc"+"ript>"}}
+		<script id="homeListenerScript" type="text/javascript" src="../js/listener/home.listener.js"> {{html "</sc"+"ript>"}}
+</script>
+
+
+<!-- Book record Template -->
+<script id="recordTemplate" type="text/x-jQuery-tmpl">
+	<tr id="record_${id}" class="storeData">
+		<td style="width: 100px;">${id}</td>
+		<td style="width: 300px;">${name}</td>
+		<td style="width: 500px;">${desc}</td>
+		<!--
+		<td class="actions">
+			<a href="javascript:void(0)"><i class="icon-folder-open" style="padding-right: 10px"></i><span class="view-lnk">view</span></a> | 
+			<a href="javascript:void(0)"><i class="icon-edit" style="padding-right: 10px"></i><span class="edit-lnk">edit</span></a> | 
+			<a href="javascript:void(0)"><i class="icon-trash" style="padding-right: 10px"></i><span class="delete-lnk">delete</span></a>
+		</td>
+		-->
+		<td class="actions">
+
+				<!-- Single button -->
+				<div class="btn-group">
+				  <button type="button" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+				    <i class="icon-cog"></i> Actions <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu">
+				    <li><a href="javascript:void(0)"><i class="icon-folder-open" style="padding-right: 10px"></i><span class="view-lnk">view</span></a></li>
+				    <li><a href="javascript:void(0)"><i class="icon-edit" style="padding-right: 10px"></i><span class="edit-lnk">edit</span></a></li>
+				    <li><a href="javascript:void(0)"><i class="icon-trash" style="padding-right: 10px"></i><span class="delete-lnk">delete</span></a></li>
+  				  </ul>
+				</div>
+		</td>
+
+	</tr>
+</script>
+
+<!-- Book record Template -->
+<script id="recordWithImageTemplate" type="text/x-jQuery-tmpl">
+	<tr id="record_${id}" class="storeData">
+		<td style="width: 100px;">${id}</td>
+		<td style="width: 300px;">
+			<img name="imageUrl" id="imageUrl" src="${imageUrl}" alt="" class="logo_img">
+		</td>
+		<td style="width: 300px;">${name}</td>
+		<td style="width: 500px;">${desc}</td>
+		<!--
+		<td class="actions">
+			<a href="javascript:void(0)"><i class="icon-folder-open" style="padding-right: 10px"></i><span class="view-lnk">view</span></a> | 
+			<a href="javascript:void(0)"><i class="icon-edit" style="padding-right: 10px"></i><span class="edit-lnk">edit</span></a> | 
+			<a href="javascript:void(0)"><i class="icon-trash" style="padding-right: 10px"></i><span class="delete-lnk">delete</span></a>
+		</td>
+		-->
+		<td class="actions">
+
+				<!-- Single button -->
+				<div class="btn-group">
+				  <button type="button" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+				    <i class="icon-cog"></i> Actions <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu">
+				    <li><a href="javascript:void(0)"><i class="icon-folder-open" style="padding-right: 10px"></i><span class="view-lnk">view</span></a></li>
+				    <li><a href="javascript:void(0)"><i class="icon-edit" style="padding-right: 10px"></i><span class="edit-lnk">edit</span></a></li>
+				    <li><a href="javascript:void(0)"><i class="icon-trash" style="padding-right: 10px"></i><span class="delete-lnk">delete</span></a></li>
+  				  </ul>
+				</div>
+		</td>
+
+	</tr>
+</script>
+
+<!-- Filter Template -->
+<script id="filterTemplate" type="text/x-jQuery-tmpl">
+    <span id="${id}" style="margin:5px;" class="label label-info filter storeData">${filterText}&nbsp;
+    	<a class="removeFilter" href="javascript:void(0)"><i class="icon-remove"></i></a>  
+    </span> 
+</script>
+
+				    
+<script id="recordWithCheckBoxTemplate" type="text/x-jQuery-tmpl">
+    <tr id="record_${id}" class="storeData">
+         <td style="width: 500px;">
+            <span style="width: 250px; display: inline-block;">${name}</span>
+            <span style="width: 250px; display: inline-block; border-left: 0px solid #ddd;">${desc}</span>
+         </td>
+         <td class="actions">
+              <a href=""><u><span class="view-lnk">view</span></u></a> | 
+              <a href=""><u><span class="edit-lnk">edit</span></u></a> |
+              <label class="checkbox inline" style="padding-top: 0;">
+                <input type="checkbox" value=""></input>
+              </label>
+         </td>
+    </tr>
+</script>
+
+
+<script id="noRecordTemplate" type="text/x-jQuery-tmpl">
+    <tr>
+         <td colspan="2"> There is no record. </td>
+    </tr>
+</script>
+
+<script id="dialogTemplate" type="text/x-jQuery-tmpl">
+
+    <div id="dialog" title="${title}">
+        <p>${body}</p>
+    </div>
+
+</script>
+
+
+<script id="paginationTemplate" type="text/x-jQuery-tmpl">
+    <span>${pageIndex} / ${pageCount}</span>
+</script>

@@ -1,0 +1,69 @@
+<!-- Add New
+================================================== -->
+<div class="link_title">
+
+	<div style="float: right;">
+	
+		<span id="filterList">
+		</span>
+		
+		<div class="btn-group" data-toggle="buttons-checkbox">
+		    <button id="filter-btn" name="filter-btn" type="button" class="btn btn-primary"><i class="icon-filter icon-white"></i>Filters</button>
+		</div>
+		
+		<button id="add-new-btn" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create Book</button>
+	</div>
+</div>
+
+<!-- Filter bar
+================================================== -->
+<div id="filters" class="alert" style="margin-bottom: 0px; display: none;">
+    <div style="display: inline-block;"><label>Author</label>
+        <select id="authors-dropdown" class="filter-dropdown"></select>
+    </div>
+    <div style="display: inline-block;"><label>Tag</label>
+        <select id="tags-dropdown" class="filter-dropdown"></select>
+    </div>
+    <div style="display: inline-block; float: right;" >
+        <button id="apply-btn" name="apply-btn" class="btn btn-warning btn-small" style="display: none;"><span>Apply</span></button>
+        <button id="clear-btn" name="clear-btn" class="btn btn-warning btn-small" style="display: none;"><span>Clear</span></button>
+    </div>
+</div>
+
+<!-- Pager
+================================================== -->
+<!-- 
+<div id="booksPager">
+	<ul class="pager" style="margin: 4px; text-align: right;">
+	  <li><a id="previous-lnk">Previous</a></li>
+          <span id="pagePosition"></span>
+	  <li><a id="next-lnk">Next</a></li>
+	</ul>
+</div>
+ -->
+ 
+<!-- Tables
+================================================== -->
+<table id="tables" class="table table-hover table-striped">
+  <tr>
+    <th>#</th>
+    <th>Image</th>
+    <th>Name</th>
+	<th>Desc</th>
+    <!-- <th>Actions</th>  -->
+    <th></th>
+  </tr>
+
+</table>
+
+<script type="text/javascript">
+
+	// best page loaded callback, auto initialize page 
+	$(function() {
+		//initXXX();
+		//book.initBooks();
+		//book.initRecords();
+		BaseBackoffice.basket.initRecords(true);
+	});
+	
+</script>

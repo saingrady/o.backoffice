@@ -1,0 +1,81 @@
+<!-- 
+Remarks:
+1. DOM should have id and name
+2. DOM should have class requestData 
+ -->
+
+<!-- Table
+================================================== -->
+<div class="container">
+
+	<!-- <table class="table table-bordered">  -->
+	<table id="table" class="table table-bordered">
+		<tr>
+			<td><label>Id</label></td>
+			<td><input type="text" id="id" name="id" class="requestData mode-read" required="required"></input></td>
+		</tr>
+		<tr>
+			<td><label>Name</label></td>
+			<td><input type="text" id="name" name="name" class="requestData mode-read" required="required"></input></td>
+		</tr>
+		<tr>
+			<td><label>Desc</label></td>
+			<td><textarea rows="5" cols="50" id="desc" name="desc" class="requestData mode-read" required="required"></textarea></td>
+		</tr>
+		
+		<tr>
+			<td><label>Not request data <br><span style="color: red; font-size: xx-small;">so it will not be remembered</span> </label></td>
+			<td>
+				<input type="text" id="notRequestData" name="notRequestData" class="mode-read" required="required"></input>
+				<input type="hidden" id="hiddenData" name="hiddenData"></input>
+			</td>
+		</tr>
+		
+		<tr>
+         	<td><label>Author</label></td>
+			<td>
+				<select id="author" name="author" class="requestData">
+				</select>
+			</td>
+        </tr>
+        
+        <tr>
+              <td><label>Tag</label></td>
+              <td>
+                  <select name="tags" id="tags" multiple="multiple"  class="requestData">
+                  </select>              
+              </td>
+          </tr>
+          
+
+		<!--               
+        <tr>
+              <td><label>Image</label></td>
+              <td>
+					<div id="imageUrlContainer">
+						<form id="imageUploadForm_imageUrl" name="imageUploadForm_imageUrl" method="POST" class="imageForm" novalidate="novalidate">         
+							<img name="imageUrl" id="imageUrl" src="" alt="" class="logo_img invalid" data-image="image" data-img-size="img-size" data-width="320" data-height="274" data-img-url-valid="img-url-valid">         
+						</form>
+					</div>            
+              </td>
+         </tr>
+         -->
+		<tr>
+			<td><label>Image</label></td>
+			<td><input type="text" id="imageUrl" name="imageUrl" class="requestData mode-read" required="required"></input></td>
+		</tr>               
+          
+	</table>
+
+</div>
+
+
+
+<script type="text/javascript">
+	// best page loaded callback, auto initialize page 
+	$(function() {
+		//book.initBook();
+		//book.initRecord();
+		BaseBackoffice.basket.initRecord();
+	});
+</script>

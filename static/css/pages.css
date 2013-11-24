@@ -1,0 +1,100 @@
+.view, .edit, .delete {
+    padding: 5px;
+}
+
+div .link_title{
+    background-color: grey;
+    color: white;
+    height: 30px;
+    padding: 5px;
+}
+
+.up-icon{
+    width: 16px;
+    height: 16px;
+    padding-left: 7px;
+    padding-right: 7px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image:url("/img/arrow_up.png");
+}
+
+.down-icon{
+    width: 16px;
+    height: 16px;
+    padding-left: 7px;
+    padding-right: 7px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image:url("/img/arrow_down.png");
+}
+
+.delete-icon{
+    width: 16px;
+    height: 16px;
+    padding-left: 7px;
+    padding-right: 7px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image:url("/img/icon_delete.png");
+}
+
+.error {
+    background-color: red;
+    color: #fff;
+    padding: 3px 8px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 11px;
+    line-height: 13px;
+}
+
+.error p {
+	display: inline;
+}
+
+.opaque{
+    opacity:0.4;
+    filter:alpha(opacity=40); /* For IE8 and earlier */
+}
+
+.gllpMap img{
+    max-width: inherit; /* bootstrap override it */
+}
+
+
+.preview {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.flag {
+    width: 35px;
+    height: 25px;
+}
+
+.logo_img{
+    width: 100px;
+    height: 100px;
+}
+
+.home_img{
+    width: 590px;
+    height: 590px;
+}
+
+#startDatePicker, #endDatePicker {
+    cursor: pointer;
+}
+
+#startDatePicker[disabled], #endDatePicker[disabled] {
+    cursor: default;
+}
+
+.loading{
+	background-image: url("/img/loading.gif");
+	height: 125px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
