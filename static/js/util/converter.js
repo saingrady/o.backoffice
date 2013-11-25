@@ -5,6 +5,19 @@ function Converter(){
 	
 }
 
+Converter.prototype.month = ["January",
+                             "February",
+                             "March",
+                             "April",
+                             "May",
+                             "June",
+                             "July",
+                             "August",
+                             "September",
+                             "October",
+                             "November",
+                             "December"];
+
 //Methods
 
 /** 
@@ -31,7 +44,7 @@ Converter.prototype.convertLong = function (milis){
 
 	var date = new Date(milis);
 	//return $.datepicker.formatDate('DD/MM/YYYY', date);
-	return date.getDate() + "/" + month[date.getMonth()] + "/" + date.getFullYear() + " " + 
+	return date.getDate() + "/" + Converter.prototype.month[date.getMonth()] + "/" + date.getFullYear() + " " + 
 	  (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":"  + (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
 
 };
@@ -93,7 +106,7 @@ Converter.prototype.remainTimes = function (endTime, currentTime){
 
 
 Converter.prototype.getUTCDate = function (date){
-	return date.getUTCDate() + "/" + month[date.getUTCMonth()] + "/" + date.getUTCFullYear() + " " + 
+	return date.getUTCDate() + "/" + Converter.prototype.month[date.getUTCMonth()] + "/" + date.getUTCFullYear() + " " + 
     (date.getUTCHours() < 10 ? '0' : '') + date.getUTCHours() + ":" + (date.getUTCMinutes() < 10 ? '0' : '') + date.getUTCMinutes() + ":"  + (date.getUTCSeconds() < 10 ? '0' : '') + date.getUTCSeconds();
 };
 
