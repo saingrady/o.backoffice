@@ -1904,7 +1904,7 @@ BaseBackoffice.prototype.previewInputFile = function (event){
 	
 /*
 getUploadUrl: function (parameters){
-	var url = "/api/goodiez/blob/upload" + (undefined !== parameters ? parameters : "");
+	var url = "/api/domainName/blob/upload" + (undefined !== parameters ? parameters : "");
 	//var tok = basicUsername + ':' + basicPassword;
         //var hash = window.btoa(tok);
 	//var responseData = apiRequester.makeRequest(url, hash,"cannot get upload url.");
@@ -1919,7 +1919,7 @@ getUploadUrl: function (parameters){
 	
 /***/
 BaseBackoffice.prototype.getUploadUrl = function (parameters, callback){
-		var requestUrl = "/api/goodiez/blob/upload" + (undefined !== parameters ? parameters : "");
+		var requestUrl = "/api/domainName/blob/upload" + (undefined !== parameters ? parameters : "");
 		
 		// Asynchronous required
 		$.ajax({
