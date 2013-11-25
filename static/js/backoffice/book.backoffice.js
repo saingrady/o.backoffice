@@ -375,6 +375,7 @@ Book.prototype.filterDropdownEvent = function (event){
 	// Shortcut
 	var o = this;
 	o.parent.filterDropdownEvent.call(o, event);
+	$("#page_books #filters").hide();
 	
 };
 
@@ -470,7 +471,7 @@ Book.prototype.generateData = function(requestData){
 	if (!o.records.table) {
 		
 			o.records.table = [
-							{id: 1, name: 'Twelfth Night', desc: 'a comedy by William Shakespeare, believed to have been written around 1601–02 as a Twelfth Night\'s entertainment for the close of the Christmas season', author: '1', tags: '2', imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
+							{id: 1, name: 'Twelfth Night', desc: 'a comedy by William Shakespeare, believed to have been written around 1601ï¿½02 as a Twelfth Night\'s entertainment for the close of the Christmas season', author: '1', tags: '2', imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
 							{id: 2, name: 'And Then There Were None', desc: 'a detective novel by Agatha Christie. It was first published in the United Kingdom by the Collins Crime Club on 6 November 1939 as Ten Little Niggers, after the British nursery rhyme which serves as a major plot point', author: '2', imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
 							{id: 3, name: 'Romeo and Juliet', desc: 'a tragedy written early in the career of William Shakespeare about two young star-crossed lovers whose deaths ultimately reconcile their feuding families', author: '1', tags: '1', imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
 							{id: 4, name: 'The Disgraceful Duke', desc: 'It was very sweet story of a young sheltered girl named Shimona and a Duke known as \'His Disgrace\'', author: '3', tags: '1', imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
