@@ -1,11 +1,18 @@
 console.log("converter");
 
-/* 
+//Properties
+function Converter(){
+	
+}
+
+//Methods
+
+/** 
  * Convert long to date
  * better to store date in timestamp, no worry about format
  * */
-function convertLong(milis){
-
+Converter.prototype.convertLong = function (milis){
+	
 	var month=new Array();
 
 	month[0]="January";
@@ -27,53 +34,43 @@ function convertLong(milis){
 	return date.getDate() + "/" + month[date.getMonth()] + "/" + date.getFullYear() + " " + 
 	  (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":"  + (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
 
-}
+};
 
-
-/* 
- * Convert date to long 
- * */
-function convertDate(){
-}
-
-
-/* 
+/** 
  * Convert day to milis 
- * */
-function convertDayToMilis(day){
+ **/
+Converter.prototype.convertDayToMilis = function (day){
 	return day * ( 24 * 60 * 60 * 1000);
-    
-}
+};
 
-/* 
+/** 
  * Convert milis to day 
- * */
-function convertMilisToDay(milis){
+ **/
+Converter.prototype.convertMilisToDay = function (milis){
 	return milis / ( 24 * 60 * 60 * 1000 );
-}
+};
 
-
-function capitalize(text){
+Converter.prototype.capitalize = function (text){
 	return text.substr(0, 1).toUpperCase() + text.substr(1);
-}
+};
 
-function nextDate(date, forwardDays) {
-	return new Date(new Date().getTime() + forwardDays* (24*60*60*1000))
-}
+Converter.prototype.nextDate = function (date, forwardDays){
+	return new Date(new Date(date).getTime() + forwardDays* (24*60*60*1000));
+};
 
-function previousDate(date, backwardDays) {
-	return new Date(new Date().getTime() - backwardDays * (24*60*60*1000))
-}
+Converter.prototype.previousDate = function (date, backwardDays){
+	return new Date(new Date(date).getTime() - backwardDays * (24*60*60*1000));
+};
 
-/*
+/**
  * Compare UTC times of end date and current date
  * expired(time left <= 0)
  * 
  * endTime: end time of UTC date
  * currentTime: current time of UTC date from current date
- * */
-function compareTimes(endTime, currentTime){
-	
+ **/
+
+Converter.prototype.remainTimes = function (endTime, currentTime){
 	//var timeLeft = new Date("3-Jan-2013").getTime()-new Date("3-Jan-2013").getTime();
 	//0 expired
 	
@@ -91,38 +88,40 @@ function compareTimes(endTime, currentTime){
 	
 	var timeLeft = endTime - currentTime;
 	return timeLeft;
-}
 
-function getUTCDate(date){
+};
+
+
+Converter.prototype.getUTCDate = function (date){
 	return date.getUTCDate() + "/" + month[date.getUTCMonth()] + "/" + date.getUTCFullYear() + " " + 
     (date.getUTCHours() < 10 ? '0' : '') + date.getUTCHours() + ":" + (date.getUTCMinutes() < 10 ? '0' : '') + date.getUTCMinutes() + ":"  + (date.getUTCSeconds() < 10 ? '0' : '') + date.getUTCSeconds();
-}
+};
 
-function getTimes(date){
+Converter.prototype.getTimes = function (date){
 	return new Date(date).getTime();
-}
+};
 
-function displayTimezone(){
+Converter.prototype.displayTimezone = function (){
     //Display real timezone
     //for example: GMT+0700
     return new Date().toTimeString().split(" ")[1];
-}
+};
 
 /**
  * setHours() to date
  * milliseconds
  * */
-function getDateAndTimes(datePicker, timePicker){
+Converter.prototype.getDateAndTimes = function (datePicker, timePicker){
     var times = $(timePicker).val();
     var dateAndTimes = new Date($(datePicker).val()).setHours(times);
     return dateAndTimes;
-}
+};
 
 /**
  * getHours() from date
  * milliseconds
  * */
-function getTimesFromDate(dateValue){
+Converter.prototype.getTimesFromDate = function (dateValue){
     var date = new Date(dateValue);
     return date.getHours();
-}
+};
