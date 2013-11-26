@@ -81,7 +81,9 @@ BaseBackoffice.prototype.initRecords = function (isFilterInit){
 			//var o = BaseBackoffice.basket;
 		
 			//optional 
+			jQuery.ajaxSetup({async:false});
 			o.preInitRecords();
+			jQuery.ajaxSetup({async:true});
 			
 			o.processing();
 			o.setBtnClass(o.NAME_SPACE);
@@ -132,7 +134,9 @@ BaseBackoffice.prototype.initRecords = function (isFilterInit){
 						}
 						
 						//optional 
+						jQuery.ajaxSetup({async:false});
 						o.postInitRecords();
+						jQuery.ajaxSetup({async:true});
 						
 			}, o.recordAPI.failureHandler);
 
@@ -151,7 +155,9 @@ BaseBackoffice.prototype.initRecord = function (){
 			var o = this;
 			
 			//optional 
+			jQuery.ajaxSetup({async:false});
 			o.preInitRecord();
+			jQuery.ajaxSetup({async:true});
 			
 			var record = o.getRecordData(o.records.currentRecord);
 
@@ -165,7 +171,9 @@ BaseBackoffice.prototype.initRecord = function (){
 			//$("#homeContainer").after($("#notifyContainer").clone(true));
 			
 			//optional 
+			jQuery.ajaxSetup({async:false});
 			o.postInitRecord();
+			jQuery.ajaxSetup({async:true});
 
 };
 
