@@ -2319,6 +2319,17 @@ BaseBackoffice.prototype.cloneRequestData = function (oldObject){
 		return newObject;
 };
 
+/***/
+BaseBackoffice.prototype.setUser = function (itemName, item){
+	//sessionStorage - stores data for one session
+	//localStorage - stores data with no expiration date
+	localStorage.setItem(itemName, JSON.stringify(item));
+};
+
+/***/
+BaseBackoffice.prototype.getUser = function (itemName){
+	return JSON.parse(localStorage.getItem(itemName));
+}; 
 	
 /***/
 BaseBackoffice.prototype.callDynamicFunction = function (functionName){
