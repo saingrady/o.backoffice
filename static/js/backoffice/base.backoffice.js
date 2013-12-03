@@ -2322,7 +2322,8 @@ BaseBackoffice.prototype.cloneRequestData = function (oldObject){
 /***/
 BaseBackoffice.prototype.setItem = function (itemName, item){
 	//sessionStorage - stores data for one session
-	//localStorage - stores data with no expiration date
+	//localStorage - stores data with no expiration date 
+	//Remember me
 	localStorage.setItem(itemName, JSON.stringify(item));
 };
 
