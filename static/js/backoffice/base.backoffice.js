@@ -2320,17 +2320,22 @@ BaseBackoffice.prototype.cloneRequestData = function (oldObject){
 };
 
 /***/
-BaseBackoffice.prototype.setUser = function (itemName, item){
+BaseBackoffice.prototype.setItem = function (itemName, item){
 	//sessionStorage - stores data for one session
 	//localStorage - stores data with no expiration date
 	localStorage.setItem(itemName, JSON.stringify(item));
 };
 
 /***/
-BaseBackoffice.prototype.getUser = function (itemName){
+BaseBackoffice.prototype.getItem = function (itemName){
 	return JSON.parse(localStorage.getItem(itemName));
 }; 
 	
+/***/
+BaseBackoffice.prototype.removeItem = function (itemName){
+	localStorage.removeItem(itemName);
+}; 	
+
 /***/
 BaseBackoffice.prototype.callDynamicFunction = function (functionName){
 		window[functionName].apply();
