@@ -78,7 +78,7 @@ BaseListener.prototype.initListener = function (nameSpace){
  * @param selector
  * @param handler
  */
-BaseListener.prototype.setOnClickListener = function (selector, handler){
+BaseListener.prototype.setClickListener = function (selector, handler){
     
 	// Shortcut
 	var o = this;
