@@ -69,6 +69,24 @@ BaseListener.prototype.initListener = function (nameSpace){
 };
 
 
+/**
+ * Set listener event to specific html list
+ * now and future elements
+ * 
+ * It is useful for home page, even some library stop propagation on menu
+ *
+ * @param selector
+ * @param handler
+ */
+BaseListener.prototype.setOnClickListener = function (selector, handler){
+    
+	// Shortcut
+	var o = this;
+    $(selector).click(function(event){
+    	BaseListener.prototype.EventHandler.call(o, event, handler);
+    });
+
+};
 
 /**
  * Set listener event to specific html list

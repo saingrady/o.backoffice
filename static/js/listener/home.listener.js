@@ -31,16 +31,16 @@ function HomeListener(){
 HomeListener.prototype.initListener = function (){
 	
 	// brand event
-	this.setDelegateClickListener("#home_brand", "openBrandEvent");
+	this.setOnClickListener("#home_brand", "openBrandEvent");
 		
 	// menu Book 
-	this.setDelegateClickListener("#page_books_nav", "openBookEvent");
+	this.setOnClickListener("#page_books_nav", "openBookEvent");
 		
 	// menu Author 
-	this.setDelegateClickListener("#page_authors_nav", "openAuthorEvent");
+	this.setOnClickListener("#page_authors_nav", "openAuthorEvent");
 		
 	// menu Tag
-	this.setDelegateClickListener("#page_tags_nav", "openTagEvent");
+	this.setOnClickListener("#page_tags_nav", "openTagEvent");
 
 
 	// modal
