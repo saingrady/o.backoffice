@@ -21,6 +21,8 @@ jQuery.ajaxSetup({
 $( document ).ajaxComplete(function( event,request, settings ) {
 	if (("401" == request.status) && ("Unauthorized" == request.statusText)){
 		localStorage.removeItem('user');
-		window.location = "/admin/signin.html";
+		if (!window.location.indexOf("/admin/signin.html")) {
+			window.location = "/admin/signin.html";
+		}
 	}
 });
