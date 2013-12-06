@@ -71,7 +71,7 @@ BaseListener.prototype.initListener = function (nameSpace){
 
 /**
  * Set listener event to specific html list
- * now and future elements
+ * now and NOT future elements
  * 
  * It is useful for home page, even some library stop propagation on menu
  *
