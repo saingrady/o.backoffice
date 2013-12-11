@@ -53,8 +53,8 @@ BaseListener.prototype.initListener = function (nameSpace){
 	 
 	/* --------------------------Pager--------------------------*/
 		
-	//setDelegateClickListener("#authorsPager .pager #previous-lnk", previousPagerBook);
-	//setDelegateClickListener("#authorsPager .pager #next-lnk", nextPagerBook);
+	//setDelegateClickListener("#authorsPager .pager #previous-lnk", "previousPagerRecordEvent");
+	//setDelegateClickListener("#authorsPager .pager #next-lnk", "nextPagerRecordEvent");
 
 	/* --------------------Image Upload: choose, change, submit--------------- */
 

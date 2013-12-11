@@ -693,7 +693,7 @@ BaseBackoffice.prototype.filterDropdownEvent = function (event){
 * Previous Pager
 * */
 //can @override
-BaseBackoffice.prototype.previousPagerRecord = function (){
+BaseBackoffice.prototype.previousPagerRecordEvent = function (event){
 
 	// Shortcut
 	var o = this;
@@ -704,7 +704,7 @@ BaseBackoffice.prototype.previousPagerRecord = function (){
 * Next Pager
 * */
 //can @override
-BaseBackoffice.prototype.nextPagerRecord = function (){
+BaseBackoffice.prototype.nextPagerRecordEvent = function (event){
 
 	// Shortcut
 	var o = this;
