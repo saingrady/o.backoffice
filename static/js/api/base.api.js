@@ -51,15 +51,18 @@ BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHan
 // Error Handler
 BaseAPI.prototype.failureHandler = function(jqXHR, textStatus, errorThrown){
 
-											switch(jqXHR.status){
+												switch(jqXHR.status){
 												case 401:
-													alert("What is 401 ?");	
+													//alert("What is 401 ?");	
+													baseBackoffice.error("401: Unauthorized");
 													break;
 												case 403:
-													alert("What is 403 ?");	
+													//alert("What is 403 ?");
+													baseBackoffice.error("403: Forbidden");
 													break;
 												default:
-													alert(errorThrown);
+													//alert(errorThrown);
+													baseBackoffice.error(errorThrown);
 											}
 										};
 
