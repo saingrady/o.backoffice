@@ -774,6 +774,7 @@ BaseBackoffice.prototype.ajaxSetting = function (){
     	});
     	*/
     		
+	    /*
     	// every ajax request from now so on		
     	jQuery.ajaxSetup({
     	    beforeSend: function (jqXHR, settings) {
@@ -803,7 +804,7 @@ BaseBackoffice.prototype.ajaxSetting = function (){
     	$( document ).ajaxStop(function() {
     		$( "#loading" ).hide();
     	});
-    	
+    	*/
 };
     
    
