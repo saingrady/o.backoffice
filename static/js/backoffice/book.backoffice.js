@@ -44,6 +44,18 @@ Book.prototype.initRecords = function (isFilter){
 			// Shortcut	
 			var o = this;
 			o.parent.initRecords.call(o, isFilter);
+			
+			/*
+			// paging
+			$("#pagination").pagination({
+	            items: 100,
+	            itemsOnPage: 10,
+	            onPageClick: function(pageNumber, event) {
+	            	console.log(pageNumber);
+	            }
+	        });
+	        */
+			
 };
 
 /**
