@@ -135,7 +135,7 @@ BaseBackoffice.prototype.initRecords = function (isFilterInit){
 						
 						//optional 
 						jQuery.ajaxSetup({async:false});
-						o.postInitRecords();
+						o.postInitRecords(jRecords);
 						jQuery.ajaxSetup({async:true});
 						
 			}, o.recordAPI.failureHandler);
@@ -205,7 +205,7 @@ BaseBackoffice.prototype.preInitRecords = function (){
 * Post Init records
 * */		
 //can @override
-BaseBackoffice.prototype.postInitRecords = function (){
+BaseBackoffice.prototype.postInitRecords = function (jRecords){
 			// override version
 };
 

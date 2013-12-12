@@ -41,11 +41,11 @@
 	</ul>
 </div>
  -->
-
+ 
 <!--  
 <ul id="pagination" class="pagination pull-right">
 </ul>
-  -->
+-->
   
 <!-- Tables
 ================================================== -->
@@ -65,6 +65,20 @@
 
 	// best page loaded callback, auto initialize page 
 	$(function() {
+		
+		/*
+        // paging
+        $("#pagination").pagination({
+        	items: 100, //default
+            itemsOnPage: 10, //default
+            onPageClick: function(pageNumber, event) {
+            	//href# shake page, so cancel this href event 
+            	event.preventDefault();
+                BaseBackoffice.basket.pageEvent(pageNumber, event);
+            }
+        });
+        */
+        
 		//initXXX();
 		//book.initBooks();
 		//book.initRecords();

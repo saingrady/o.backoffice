@@ -102,10 +102,14 @@ Book.prototype.preInitRecords = function (){
 * Post Init records
 * */		
 //@override
-Book.prototype.postInitRecords = function (){
+Book.prototype.postInitRecords = function (jRecords){
 			// Shortcut
 			var o = this;
 			o.parent.postInitRecords.call(o);
+			
+		    //set page
+		    //$("#pagination").pagination('drawPage', pageNumber);
+		    //$("#pagination").pagination('updateItems', jRecords["totalSize"]);
 };
 
 /**
@@ -411,6 +415,24 @@ Book.prototype.nextPagerRecord = function (){
 };
 
 //================================================================================ //
+
+Book.prototype.pageEvent = function(pageNumber, event){
+	
+	// Shortcut
+	var o = this;
+	
+	console.log(pageNumber);
+    console.log(event.target);
+    
+    //set pager
+    o.records.paging.pager["cursorKey"] = (pageNumber-1) * 10;
+    o.records.paging.pager["pageSize"] = 10;
+    
+    //reload
+    $(o.TABLE_RECORDS).html("");
+    o.initRecords();
+    
+};
 
 
 Book.prototype.removeFilterEvent = function (event){
