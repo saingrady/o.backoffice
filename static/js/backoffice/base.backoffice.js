@@ -2223,7 +2223,7 @@ BaseBackoffice.prototype.giveDomData = function (mainSelector, data){
 			
 			if ($(this).is("select") && (value)){
 				// input select is special
-				$(this).val(value.split(","));	
+				$(this).val(String(value).split(","));	
 			} else {
 				// inputs, img
 				$(this).val(value);	
