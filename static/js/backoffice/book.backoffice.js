@@ -398,7 +398,7 @@ Book.prototype.filterDropdownEvent = function (event){
 * Previous Pager
 * */
 //@override
-Book.prototype.previousPagerRecord = function (){
+Book.prototype.previousPagerRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.previousPagerRecord.call(o);
@@ -408,10 +408,21 @@ Book.prototype.previousPagerRecord = function (){
 * Next Pager
 * */
 //@override
-Book.prototype.nextPagerRecord = function (){
+Book.prototype.nextPagerRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.nextPagerRecord.call(o);
+};
+
+
+/**
+* Paging
+* */
+//@override
+Book.prototype.pageEvent = function (event){
+			// Shortcut
+			var o = this;
+			o.parent.pageEvent.call(o);
 };
 
 //================================================================================ //

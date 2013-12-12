@@ -711,6 +711,26 @@ BaseBackoffice.prototype.nextPagerRecordEvent = function (event){
 	o.nextPager(o.records, 10, initBrands);
 };
 
+/**
+* Paging
+* */
+//can @override
+BaseBackoffice.prototype.pageEvent = function(pageNumber, event){
+	// Shortcut
+	var o = this;
+	
+	console.log(pageNumber);
+    console.log(event.target);
+    
+    //set pager
+    o.records.paging.pager["cursorKey"] = (pageNumber-1) * 10;
+    o.records.paging.pager["pageSize"] = 10;
+    
+    //reload
+    $(o.TABLE_RECORDS).html("");
+    o.initRecords();
+    
+};
 // ================================================================================ //
 
 // support Methods
