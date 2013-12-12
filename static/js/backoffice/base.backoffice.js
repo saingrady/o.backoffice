@@ -326,6 +326,10 @@ BaseBackoffice.prototype.deleteBtnRecordEvent = function (event){
 						o.recordAPI.deleteRecord(o.records.currentData.id, function(jcountry){
 							
 				        	o.prepareMsg("Deleted successfully.");
+				        	
+				        	//reset paging
+				        	o.resetPaging(o.records);
+
 				        	//reload page
 				        	o.reloadPage();
 							
