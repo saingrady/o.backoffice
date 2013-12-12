@@ -108,8 +108,8 @@ Book.prototype.postInitRecords = function (jRecords){
 			o.parent.postInitRecords.call(o);
 			
 		    //set page
-		    //$("#pagination").pagination('drawPage', pageNumber);
-		    //$("#pagination").pagination('updateItems', jRecords["totalSize"]);
+		    //$("#page_books #pagination").pagination('drawPage', pageNumber);
+			//$("#page_books #pagination").pagination('updateItems', jRecords["totalSize"]);
 };
 
 /**
