@@ -419,10 +419,10 @@ Book.prototype.nextPagerRecordEvent = function (event){
 * Paging
 * */
 //@override
-Book.prototype.pageEvent = function (event){
+Book.prototype.pageEvent = function (pageNumber, event){
 			// Shortcut
 			var o = this;
-			o.parent.pageEvent.call(o);
+			o.parent.pageEvent.call(o, pageNumber, event);
 };
 
 //================================================================================ //
