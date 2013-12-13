@@ -1680,13 +1680,10 @@ BaseBackoffice.prototype.uploadFile = function (file){
 				$(this).removeAttr("data-img-url-valid");
 		
 				//refresh validation after image enlarge more space
-				if (("" != validateFunctionName) && ( undefined != validateFunctionName)) {
-					callDynamicFunction(validateFunctionName);
-				}
+				o.validateRecord();
 		
 				// upload image immediately after preview image
-				sendFormData($(img).parent().find(".imageFile"));
-				//sendFormData($(this).parent().find(".imageFile"));
+				o.sendFormDataOneByOne($(img).parent().find(".imageFile"));
 		
 				$(this).unbind('load');
 			
