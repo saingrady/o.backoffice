@@ -2108,6 +2108,21 @@ BaseBackoffice.prototype.uploadTo = function (uploadUrl, formData){
 }; 
 	 
 
+
+BaseBackoffice.prototype.generateDynamicImageUploadForm = function (formName,labelName,imgName,inputName,buttonName,containerId){
+	var templateData = {'formName': formName, 'labelName':labelName, 'imgName': imgName, 'inputName': inputName, 'buttonName': buttonName };
+	// use template 
+	$("#imageFormTemplate").tmpl(templateData).appendTo(containerId);
+};
+
+BaseBackoffice.prototype.generateDynamicExtraImageUploadForm = function (formName,labelName,imgName,inputName,buttonName,containerId){
+	var templateData = {'formName': formName, 'labelName':labelName, 'imgName': imgName, 'inputName': inputName, 'buttonName': buttonName };
+	// use template 
+	$("#extraImageFormTemplate").tmpl(templateData).appendTo(containerId);
+};
+
+
+
 /**
  * Verify the input data is string obj
  *  

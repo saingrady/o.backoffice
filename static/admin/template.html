@@ -17,6 +17,17 @@
     </form>
 </script>
 
+<script id="extraImageFormTemplate" type="text/x-jQuery-tmpl">
+    <form class="imageForm" method="POST" name="${formName}" id="${formName}">
+        <span class="name">${labelName}</span>
+        <!-- Image -->
+        <img alt="" src="" id="${imgName}" name="${imgName}">
+        <input class="imageFile" type="file" id="${inputName}_${imgName}" name="${inputName}_${imgName}" style="display:none;">
+        <button class="imageUpload" id="${buttonName}" >Upload file</button>
+        <a id="removeExtraImage" class="icon-trash"></a>
+    </form>
+</script>
+
 <!-- Collection HTML Template -->
 <script id="collectionTemplate" type="text/x-jQuery-tmpl">
 <div id="collection_1" >

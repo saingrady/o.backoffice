@@ -123,6 +123,9 @@ Book.prototype.preInitRecord = function (){
 			
 			o.generateDropdownAuthor("#author", true);
 			o.generateDropdownTag("#tags", false);
+			
+			//o.generateDynamicImageUploadForm("imageUploadForm_imageUrl", "", "imageUrl", "imageFile", "imageUpload", "#imageUrlContainer");
+			//$("#imageUrl").addClass("logo_img");
 };
 
 /**
