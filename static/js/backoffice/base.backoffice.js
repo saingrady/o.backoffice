@@ -1767,7 +1767,7 @@ BaseBackoffice.prototype.checkRequiredFileName = function (input){
 /**
  * Choose image file first
  */
-BaseBackoffice.prototype.chooseImage = function (event){
+BaseBackoffice.prototype.chooseImageEvent = function (event){
 		var that = event.target;
 		console.log("event:");
 		console.log(event);
@@ -1780,7 +1780,7 @@ BaseBackoffice.prototype.chooseImage = function (event){
 /**
  * choose image - image change - display image
  * */
-BaseBackoffice.prototype.previewInputFile = function (event){
+BaseBackoffice.prototype.previewInputFileEvent = function (event){
 	
 		// Shortcut
 		var o = this;
@@ -1846,7 +1846,7 @@ BaseBackoffice.prototype.previewInputFile = function (event){
 }; 
 
 /* --------------------Upload file--------------- */
-BaseBackoffice.prototype.chooseUrl = function (event){
+BaseBackoffice.prototype.chooseUrlEvent = function (event){
 	// not submit its form
 	event.preventDefault();
 	//console.log("chooseUrl");
@@ -1856,7 +1856,7 @@ BaseBackoffice.prototype.chooseUrl = function (event){
 /**
  * mark input url file
  * */
-BaseBackoffice.prototype.markInputFile = function(){
+BaseBackoffice.prototype.markInputFileEvent = function(event){
 	
     var input = this;
 

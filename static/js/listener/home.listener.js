@@ -59,16 +59,16 @@ HomeListener.prototype.initListener = function (){
 	
 	/* --------------------------Upload image ------------*/
 	//dynamic-class choose image
-	//setDelegateClickListener(".imageUpload", chooseImage);
+	//this.setDelegateClickListener(".imageUpload", "chooseImageEvent");
 	// dynamic-class image file change
-	//setDelegateChangeListener(".imageFile", previewInputFile);
+	//this.setDelegateChangeListener(".imageFile", "previewInputFileEvent");
 	
 	
 	/* --------------------Upload url--------------- */
 	//dynamic-class choose url
-	//setDelegateClickListener(".urlUpload", chooseUrl);
+	//this.setDelegateClickListener(".urlUpload", "chooseUrlEvent");
 	//dynamic-class url file change
-	//setDelegateChangeListener(".urlFile", markInputFile);
+	//this.setDelegateChangeListener(".urlFile", "markInputFileEvent");
 	
 };
 
