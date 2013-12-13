@@ -48,10 +48,27 @@ HomeListener.prototype.initListener = function (){
 	this.setDelegateClickListener("#yes-delete-btn", "confirmDeleteEvent");
 
 	/*--------------------------drag and drop -------------------*/
-	//setDelegateDragoverListener(".logo_img", handleDragOver);
-	//setDelegateDropListener(".logo_img", handleFileSelect);
-	//setDelegateDragoverListener(".flag", handleDragOver);
-	//setDelegateDropListener(".flag", handleFileSelect);
+	/*
+	setDelegateDragoverListener(".logo_img", handleDragOver);
+	setDelegateDropListener(".logo_img", handleFileSelect);
+	setDelegateDragoverListener(".flag", handleDragOver);
+	setDelegateDropListener(".flag", handleFileSelect);
+	setDelegateDragoverListener(".dropZone", handleDragOver);
+	setDelegateDropListener(".dropZone", dragAndDropMultipleFoldersOrFiles);
+	*/
+	
+	/* --------------------------Upload image ------------*/
+	//dynamic-class choose image
+	//setDelegateClickListener(".imageUpload", chooseImage);
+	// dynamic-class image file change
+	//setDelegateChangeListener(".imageFile", previewInputFile);
+	
+	
+	/* --------------------Upload url--------------- */
+	//dynamic-class choose url
+	//setDelegateClickListener(".urlUpload", chooseUrl);
+	//dynamic-class url file change
+	//setDelegateChangeListener(".urlFile", markInputFile);
 	
 };
 

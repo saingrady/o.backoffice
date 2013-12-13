@@ -1751,8 +1751,19 @@ BaseBackoffice.prototype.handleFileSelect = function (evt) {
 	    }
 };
 	
-/* --------------------Flag Upload: choose, change, submit--------------- */
+/* --------------------Upload image--------------- */
 	
+/***/
+BaseBackoffice.prototype.checkRequiredFileName = function (input){
+		// required file name
+		var fileName = $(input).parent().find("img").data("requiredFileName");
+		if ( fileName !== undefined  && fileName !== $(input).val().split(/(\\|\/)/g).pop()){
+			alert("the image file name must be " + fileName);
+			return false;
+		}
+		return true;
+};
+
 /**
  * Choose image file first
  */
@@ -1765,108 +1776,7 @@ BaseBackoffice.prototype.chooseImage = function (event){
 		console.log("chooseImage");
 	    $(that).parent().find(".imageFile").trigger("click");
 }; 
-	
-/**
- * If image change, submit form automatically
- */
-BaseBackoffice.prototype.imageChange = function (event){
-		var that = event.target;
-	    console.log("imageChange");
-	    console.log($(that).val());
-	    /*
-	    if ($(this).val()!='') {
-	    	//Parent is form
-	    	$(this).parent().attr("action", getUploadUrl);
-	    	// disable validation on submit
-	    	//$(this).parent().validate().cancelSubmit = true;
-	    	//$(this).parent().validate({ignore: ".ignore"});
-	    	
-	    	$(this).parent().submit();
-		}
-		*/
-	    
-	    if ($(that).val()!='') {
-	    	getUploadUrl(undefined, function(uploadUrl){
-	    		$(that).parent().attr("action", uploadUrl);
-	        	$(that).parent().submit();	
-	    	});
-	    	
-		}
 
-};
-	
-/***/
-BaseBackoffice.prototype.backgroundImageChange = function (event){
-		var that = event.target;
-		
-	    console.log($(that).val());
-	    /*
-	    if ($(this).val()!='') {
-	    	//Parent is form
-	    	$(this).parent().attr("action", getUploadUrl);
-	    	$(this).parent().submit();
-		}*/
-
-	    if ($(that).val()!='') {
-	    	getUploadUrl(undefined, function(uploadUrl){
-	    		$(that).parent().attr("action", uploadUrl);
-	    		$(that).parent().submit();
-	    	});
-		}
-}; 
-	
-/***/
-BaseBackoffice.prototype.urlChange = function (event){
-		var that = event.target;
-		
-	    console.log("urlChange");
-	    console.log($(that).val());
-	    /*
-	    if ($(this).val()!='') {
-	    	//Parent is form
-	    	$(this).parent().attr("action", getUploadUrl);
-	    	$(this).parent().submit();
-		}
-		*/
-	    
-	    if ($(that).val()!='') {
-	    	getUploadUrl(undefined, function(uploadUrl){
-	        	$(that).parent().attr("action", uploadUrl);
-	        	$(that).parent().submit();
-	    	});
-		}
-}; 
-	
-
-/**
- * It will be called after dynamic image form submit
- */
-BaseBackoffice.prototype.displayFormImage = function (event){
-		var that = event.target;
-		
-		console.log("displayFormImage");
-		
-	    iframe = $(that).find(".iframe").load(function () {
-	    	
-	        var returnReponse = replaceResponseText(event, iframe, "{-", "{");
-	        
-	        $(this).parent().find("img").attr("src",returnReponse.imageFile);
-	        
-	    });
-
-}; 
-	
-/***/
-BaseBackoffice.prototype.checkRequiredFileName = function (input){
-		// required file name
-		var fileName = $(input).parent().find("img").data("requiredFileName");
-		if ( fileName !== undefined  && fileName !== $(input).val().split(/(\\|\/)/g).pop()){
-			alert("the image file name must be " + fileName);
-			return false;
-		}
-		return true;
-};
-	
 /**
  * choose image - image change - display image
  * */
@@ -1934,7 +1844,52 @@ BaseBackoffice.prototype.previewInputFile = function (event){
 	        reader.readAsDataURL(input.files[0]);
 	    }
 }; 
+
+/* --------------------Upload file--------------- */
+BaseBackoffice.prototype.chooseUrl = function (event){
+	// not submit its form
+	event.preventDefault();
+	//console.log("chooseUrl");
+	$(this).parent().find(".urlFile").trigger("click");
+}
+
+/**
+ * mark input url file
+ * */
+BaseBackoffice.prototype.markInputFile = function(){
 	
+    var input = this;
+
+    // inputed file path is not an image of one of the above types
+    if (!$(input).val().toLowerCase().match(/(?:htm|html)$/)) {
+        alert("inputed file path is not a text!\nit should be: *.htm, *.html");
+        return;
+    }
+    
+    processing();
+    
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+
+		    //preview input file
+	        $(input).parent().find("a.url").text("file loaded.");
+	
+	        //keyup to refresh validation
+	        $(input).parent().find("a.url").keyup();
+	        
+	        // upload image immediately after load
+	        sendFormData($(input).parent().find(".urlFile"));
+	        
+	        processed();
+
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 /*
 getUploadUrl: function (parameters){
 	var url = "/api/domainName/blob/upload" + (undefined !== parameters ? parameters : "");
