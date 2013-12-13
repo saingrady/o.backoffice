@@ -49,12 +49,14 @@ HomeListener.prototype.initListener = function (){
 
 	/*--------------------------drag and drop -------------------*/
 	/*
-	setDelegateDragoverListener(".logo_img", handleDragOver);
-	setDelegateDropListener(".logo_img", handleFileSelect);
-	setDelegateDragoverListener(".flag", handleDragOver);
-	setDelegateDropListener(".flag", handleFileSelect);
-	setDelegateDragoverListener(".dropZone", handleDragOver);
-	setDelegateDropListener(".dropZone", dragAndDropMultipleFoldersOrFiles);
+	this.setDelegateDragoverListener(".logo_img", "handleDragOverEvent");
+	this.setDelegateDropListener(".logo_img", "handleFileDropEvent");
+	
+	this.setDelegateDragoverListener(".flag", "handleDragOverEvent");
+	this.setDelegateDropListener(".flag", "handleFileDropEvent");
+	
+	this.setDelegateDragoverListener(".dropZone", "handleDragOverEvent");
+	this.setDelegateDropListener(".dropZone", "dragAndDropMultipleFoldersOrFilesEvent");
 	*/
 	
 	/* --------------------------Upload image ------------*/

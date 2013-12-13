@@ -1504,16 +1504,18 @@ BaseBackoffice.prototype.removeHtml = function (records){
 /* --------------------------Drag and Drop------------------------ */
 
 /***/
-BaseBackoffice.prototype.handleDragOver = function (evt) {
+BaseBackoffice.prototype.handleDragOverEvent = function (evt) {
 		console.log("handleDragOver");
 		evt.stopPropagation();
 		evt.preventDefault();
 		evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 }; 
 	
-/***/
+/**
+ * Multiple files/folders drop
+ * */
 //dragAndDropMultipleFoldersAndFiles
-BaseBackoffice.prototype.handleDrop = function (evt) {
+BaseBackoffice.prototype.dragAndDropMultipleFoldersOrFilesEvent = function (evt) {
 		
 	
 		// Shortcut
@@ -1680,10 +1682,13 @@ BaseBackoffice.prototype.uploadFile = function (file){
 		}
 }; 
 	
-/***/
-BaseBackoffice.prototype.handleFileSelect = function (evt) {
+
+/**
+ * Single file drop
+ * */
+BaseBackoffice.prototype.handleFileDropEvent = function (evt) {
 		
-		console.log("handleFileSelect");
+		console.log("handleFileDropEvent");
 		
 		
 	    evt.stopPropagation();
