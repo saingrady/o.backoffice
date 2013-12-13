@@ -1759,7 +1759,7 @@ BaseBackoffice.prototype.handleFileDropEvent = function (evt) {
 		        o.validateRecord();
 		        
 			    // upload image immediately after preview image, it should be asynchronous
-		        o.sendFormDataOneByOne($(input).parent().find(".imageFile"));
+		        o.sendFormDataOneByOne($(img).parent().find(".imageFile"));
 			
 		        $(this).unbind('load');
 		        
