@@ -1594,7 +1594,7 @@ BaseBackoffice.prototype.uploadFile = function (file){
 		var o = this;
 	
 		$(".loading").show();
-		console.log("uploadFile-----------------------------------------------------");
+		//console.log("uploadFile-----------------------------------------------------");
 		if(file && file instanceof File){
 			
 			//check image extention
@@ -1607,32 +1607,46 @@ BaseBackoffice.prototype.uploadFile = function (file){
 
 			var imageName = file.name.split(".")[0];
 			var img ;
-
+			
+			var fileNames = file.name.split(".")[0].split("_");
+			
+			if (fileNames == 1) {
+				//imageUrl
+				imageName = fileNames[0];
+			} else if (!isNaN(fileNames[fileNames.length-1])){
+				//extraImageUrls_1, extraImageUrls_2, extraImageUrls_3
+				imageName = fileNames[0] + "_" + parseInt(fileNames[fileNames.length-1]);
+			} else {
+				//imageUrl
+				imageName = fileNames[0];
+			}
+			
 			// ex: imageUrl.png, extraImageUrls_1.png
 			img = $("#" + imageName)[0];
-			console.log("img:", imageName, "length:", $(img).length, "src:", $(img).attr("src"), $(img).attr("src")=="", $(img).attr("src")==undefined);
+			//console.log("img:", imageName, "length:", $(img).length, "src:", $(img).attr("src"), $(img).attr("src")=="", $(img).attr("src")==undefined);
 			
 			// ex: extraImageUrls_2.png, extraImageUrls_3.png
 			//if ( ($(img).length == 0) || ("" != $(img).attr("src")) || (undefined != $(img).attr("src")) ){
 			if ( ($(img).length == 0) ) {
-				console.log("no space yet / occupied already");	
+				//console.log("no space yet / occupied already");	
 				var imageNamePrefix = imageName.split("_")[0];
 				var containerName = imageNamePrefix + "Container"; 
 				if ($("#" + containerName).length == 0) {
-					console.log("image not found.");
+					//console.log("image not found.");
+					$(".loading").hide();
 					return;
 				} else {
 					// + Add new image in correct container
 					var count = $("#" + containerName).find('img').length;
-					console.log("count: " + count);
+					//console.log("count: " + count);
 					//Max of images 
 					if (count == UPLOAD_IMAGE_MAX ) {
-						console.log("Max of images");
+						//console.log("Max of images");
 						return;
 					}
 					count = count + 1;
 	        		var suffix = imageName.split("_")[1];
-	        		o.generateDynamicExtraImageUploadForm("imageUploadForm_" + imageNamePrefix + "_" + suffix, "", imageNamePrefix + "_" + suffix, "imageFile", "imageUpload", "#" + containerName);
+	        		generateDynamicExtraImageUploadForm("imageUploadForm_" + imageNamePrefix + "_" + suffix, "", imageNamePrefix + "_" + suffix, "imageFile", "imageUpload", "#" + containerName);
 	        		img = $('#imageUploadForm_' + imageNamePrefix + '_' + suffix).find('img');
 	        		$(img).addClass("logo_img");
 	        		
@@ -1644,7 +1658,7 @@ BaseBackoffice.prototype.uploadFile = function (file){
 			}
 			
 			$(img).parent().find(":file").data("file", file);
-			console.log(file.name, $(img).parent().attr("id"));
+			//console.log(file.name, $(img).parent().attr("id"));
 			
 			var fileReader = new FileReader();
 			
@@ -1667,11 +1681,11 @@ BaseBackoffice.prototype.uploadFile = function (file){
 		
 				//refresh validation after image enlarge more space
 				if (("" != validateFunctionName) && ( undefined != validateFunctionName)) {
-					o.callDynamicFunction(validateFunctionName);
+					callDynamicFunction(validateFunctionName);
 				}
 		
 				// upload image immediately after preview image
-				o.sendFormData($(img).parent().find(".imageFile"));
+				sendFormData($(img).parent().find(".imageFile"));
 				//sendFormData($(this).parent().find(".imageFile"));
 		
 				$(this).unbind('load');
@@ -1680,13 +1694,16 @@ BaseBackoffice.prototype.uploadFile = function (file){
 			
 			fileReader.readAsDataURL(file);
 		}
-}; 
+	}; 
 	
 
 /**
  * Single file drop
  * */
 BaseBackoffice.prototype.handleFileDropEvent = function (evt) {
+		
+		// Shortcut
+		var o = this;
 		
 		console.log("handleFileDropEvent");
 		
@@ -1712,13 +1729,12 @@ BaseBackoffice.prototype.handleFileDropEvent = function (evt) {
 	        continue;
 	      }
 	      
-	    	/*
+	      /*
 	      if (!(f.type.match('image/jpeg') || f.type.match('image/png')))  {
 	          alert("inputed file path is not an image!\nit should be: *.jpg, *.png");
 	          continue;
 	      }	
-	    	*/
-	      
+	      */
 
 
 	      var reader = new FileReader();
@@ -1737,15 +1753,13 @@ BaseBackoffice.prototype.handleFileDropEvent = function (evt) {
 
 	      $(img).load(function() {
 	      	
-			$(this).removeAttr("data-img-url-valid");
+	    	  	$(this).removeAttr("data-img-url-valid");
 
 		        //refresh validation after image enlarge more space
-		        if (("" != validateFunctionName) && ( undefined != validateFunctionName)) {
-		        	callDynamicFunction(validateFunctionName);
-		        }
+		        o.validateRecord();
 		        
-			// upload image immediately after preview image, it should be asynchronous
-		        sendFormDataOneByOne($(input).parent().find(".imageFile"));
+			    // upload image immediately after preview image, it should be asynchronous
+		        o.sendFormDataOneByOne($(input).parent().find(".imageFile"));
 			
 		        $(this).unbind('load');
 		        
@@ -1756,6 +1770,7 @@ BaseBackoffice.prototype.handleFileDropEvent = function (evt) {
 	    }
 };
 	
+
 /* --------------------Upload image--------------- */
 	
 /***/
@@ -1839,6 +1854,7 @@ BaseBackoffice.prototype.previewInputFileEvent = function (event){
 
                 // upload image immediately after preview image, it should be asynchronous
 		        o.sendFormDataOneByOne($(input).parent().find(".imageFile"));
+        		
 	        
 		        $(this).unbind('load');
 	        
@@ -1940,7 +1956,7 @@ BaseBackoffice.prototype.getUploadUrl = function (parameters, callback){
 /**
  * saveBtn need to upload file first  
  * */
-BaseBackoffice.prototype.sendFormData = function (formName) {
+BaseBackoffice.prototype.sendFormDataAll = function (formName) {
 
 	
 		// Shortcut
