@@ -1544,10 +1544,14 @@ BaseBackoffice.prototype.dragAndDropMultipleFoldersOrFilesEvent = function (evt)
 
 				if(entry.isFile){
 					//Handle FileEntry
-					o.readFile(entry, o.uploadFile);
+					o.readFile(entry, function(file){
+						o.uploadFile.call(o, file);
+						});
 				}else if(entry.isDirectory){
 					//Handle DirectoryEntry
-					o.readFileTree(entry, o.uploadFile);
+					o.readFileTree(entry, function(file){
+						o.uploadFile.call(o, file);
+						});
 				}
 			}
 		}
