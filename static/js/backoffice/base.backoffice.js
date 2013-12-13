@@ -1787,67 +1787,67 @@ BaseBackoffice.prototype.chooseImageEvent = function (event){
  * */
 BaseBackoffice.prototype.previewInputFileEvent = function (event){
 	
-		// Shortcut
-		var o = this;
+	// Shortcut
+	var o = this;
+
+	var input = event.target;
+    
+	if (!o.checkRequiredFileName(input)) {
+		return;
+	}
 	
-		var input = event.target;
-	    
-		if (!checkRequiredFileName(input)) {
-			return;
-		}
-		
-	    // inputed file path is not an image of one of the above types
-	    if (!$(input).val().toLowerCase().match(/(?:gif|jpg|png|bmp)$/)) {
-	        alert("inputed file path is not an image!\nit should be: *.gif, *.jpg, *.png, *.bmp");
-	        return;
-	    }
+    // inputed file path is not an image of one of the above types
+    if (!$(input).val().toLowerCase().match(/(?:gif|jpg|png|bmp)$/)) {
+        alert("inputed file path is not an image!\nit should be: *.gif, *.jpg, *.png, *.bmp");
+        return;
+    }
 
-	    //processing();
+    //processing();
 
-	    if (input.files && input.files[0]) {
-	        var reader = new FileReader();
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-	        reader.onload = function (e) {
-	        	
-	        	
-	        	console.log("onloadend");
-	        	
-			    //preview input file
-		        $(input).parent().find("img").attr('src', e.target.result);
-	                $(input).parent().find("img").addClass("opaque");
+        reader.onload = function (e) {
+        	
+        	
+        	console.log("onloadend");
+        	
+		    //preview input file
+	        $(input).parent().find("img").attr('src', e.target.result);
+                $(input).parent().find("img").addClass("opaque");
 
-		        //keyup to refresh validation
-		        $(input).parent().find("img").keyup();
-		
-		        //processed();
+	        //keyup to refresh validation
+	        $(input).parent().find("img").keyup();
+	
+	        //processed();
 
-	        };
+        };
 
-	        $(input).parent().find("img").load(function() {
-	        	
-	        		//check image solutions in pixels
-	        		if ( this.naturalWidth !== $(this).data("width") || this.naturalHeight !== $(this).data("height")) {
-	        			alert("width x height should be: " + $(this).data("width") + " pixels x " + $(this).data("height") + " pixels");
-	        		}
+        $(input).parent().find("img").load(function() {
+        	
+        		//check image solutions in pixels
+        		/*
+        		if ( this.naturalWidth !== $(this).data("width") || this.naturalHeight !== $(this).data("height")) {
+        			alert("width x height should be: " + $(this).data("width") + " pixels x " + $(this).data("height") + " pixels");
+        		}
+        		*/
 
-	        		$(this).removeAttr("data-img-url-valid");
+        		$(this).removeAttr("data-img-url-valid");
 
-	        		//refresh validation after image enlarge more space
-			        if (("" != validateFunctionName) && ( undefined != validateFunctionName)) {
-			        	callDynamicFunction(validateFunctionName);
-			        }
+        		//refresh validation after image enlarge more space
+        		o.validateRecord();
 
-	                // upload image immediately after preview image, it should be asynchronous
-			        o.sendFormDataOneByOne($(input).parent().find(".imageFile"));
-		        
-			        $(this).unbind('load');
-		        
-			        console.log("-----------------------------------------");
-
-	        });
+                // upload image immediately after preview image, it should be asynchronous
+		        o.sendFormDataOneByOne($(input).parent().find(".imageFile"));
 	        
-	        reader.readAsDataURL(input.files[0]);
-	    }
+		        $(this).unbind('load');
+	        
+		        console.log("-----------------------------------------");
+
+        });
+        
+        reader.readAsDataURL(input.files[0]);
+    }
 }; 
 
 /* --------------------Upload file--------------- */
