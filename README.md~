@@ -33,10 +33,3 @@ Start page:
 ============
 
 home.html
-
-
-To add new module:
-================
-
-1. module.html, module.backoffice, module.listener, module.api
-2. home.html, home.backoffice, home.listener 
