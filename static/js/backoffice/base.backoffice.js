@@ -56,7 +56,7 @@ BaseBackoffice.msg = "";
 BaseBackoffice.prototype.NAME_SPACE = "";
 BaseBackoffice.prototype.CONTAINER_RECORD = "";
 BaseBackoffice.prototype.PAGE_RECORD = "";
-BaseBackoffice.prototype.NAV_RECORD = "";
+BaseBackoffice.prototype.NAV_RECORDS = "";
 BaseBackoffice.prototype.TABLE_RECORD = "";
 BaseBackoffice.prototype.FILTER_RECORDS = "";
 BaseBackoffice.prototype.TABLE_RECORDS = "";
@@ -522,7 +522,7 @@ BaseBackoffice.prototype.saveBtnAfter = function (selector){
 BaseBackoffice.prototype.cancelBtnRecordEvent = function (event){
 			// Shortcut
 			var o = this;
-			$(o.NAV_RECORD).trigger("click");
+			$(o.NAV_RECORDS).trigger("click");
 };
 
 /***/	

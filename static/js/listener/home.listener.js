@@ -34,13 +34,13 @@ HomeListener.prototype.initListener = function (){
 	this.setClickListener("#home_brand", "openBrandEvent");
 		
 	// menu Book 
-	this.setClickListener("#page_books_nav", "openBookEvent");
+	this.setClickListener("#page_book-s_nav", "openBookEvent");
 		
 	// menu Author 
-	this.setClickListener("#page_authors_nav", "openAuthorEvent");
+	this.setClickListener("#page_author-s_nav", "openAuthorEvent");
 		
 	// menu Tag
-	this.setClickListener("#page_tags_nav", "openTagEvent");
+	this.setClickListener("#page_tag-s_nav", "openTagEvent");
 
 
 	// modal
