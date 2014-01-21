@@ -24,8 +24,8 @@ Author.prototype.NAME_SPACE = "page_author";
 Author.prototype.PAGE_RECORD = "../admin/author.html";
 Author.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + Author.prototype.NAME_SPACE;
 Author.prototype.NAV_RECORD = "#" + Author.prototype.NAME_SPACE + "s" + "_nav";
-Author.prototype.FILTER_RECORDS = "#" + Author.prototype.NAME_SPACE + "s"+ " " + "#filters";
-Author.prototype.TABLE_RECORDS = "#" + Author.prototype.NAME_SPACE + "s" + " " + "#tables";
+Author.prototype.FILTER_RECORDS = "#" + Author.prototype.NAME_SPACE + Author.prototype.MULTIPLE_SUFFIX + " " + "#filters";
+Author.prototype.TABLE_RECORDS = "#" + Author.prototype.NAME_SPACE + Author.prototype.MULTIPLE_SUFFIX + " " + "#tables";
 Author.prototype.TABLE_RECORD = "#" + Author.prototype.NAME_SPACE + " " + "#table";
 Author.prototype.CACHE_RECORDS = Author.prototype.NAME_SPACE + "_cache";
 

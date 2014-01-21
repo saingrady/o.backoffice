@@ -13,7 +13,9 @@ function BaseListener(){
 //can @override
 BaseListener.prototype.initListener = function (nameSpace){
 	
-	this.setDelegateClickListener("#" + nameSpace + "s" + " " + "#add-new-btn" , "addNewRecordEvent");
+	var suffix = BaseBackoffice.prototype.MULTIPLE_SUFFIX;
+	
+	this.setDelegateClickListener("#" + nameSpace + suffix + " " + "#add-new-btn" , "addNewRecordEvent");
 	
 	/* --------------------------Buttons--------------------------*/
 	
@@ -34,21 +36,21 @@ BaseListener.prototype.initListener = function (nameSpace){
 	/* --------------------------Filters--------------------------*/
 	
 	// Filter btn
-	this.setDelegateClickListener("#" + nameSpace + "s" + " " + "#filter-btn", "filterBtnRecordsEvent");
-	this.setDelegateClickListener("#" + nameSpace + "s" + " " + "#apply-btn", "applyFilterRecordsEvent");
-	this.setDelegateClickListener("#" + nameSpace + "s" + " " + "#clear-btn", "clearFilterRecordsEvent");
+	this.setDelegateClickListener("#" + nameSpace + suffix + " " + "#filter-btn", "filterBtnRecordsEvent");
+	this.setDelegateClickListener("#" + nameSpace + suffix + " " + "#apply-btn", "applyFilterRecordsEvent");
+	this.setDelegateClickListener("#" + nameSpace + suffix + " " + "#clear-btn", "clearFilterRecordsEvent");
 	this.setDelegateChangeListener(".filter-dropdown", "filterDropdownEvent");
 	
 	/* --------------------------Links--------------------------*/
 
 	// View link
-	this.setDelegateClickListener("#" + nameSpace + "s" + " " + "#tables" + " " + ".view-lnk", "viewLnkRecordEvent");
+	this.setDelegateClickListener("#" + nameSpace + suffix + " " + "#tables" + " " + ".view-lnk", "viewLnkRecordEvent");
 
 	// Edit link
-	this.setDelegateClickListener("#" + nameSpace + "s" + " " + "#tables" + " " + ".edit-lnk", "editLnkRecordEvent");
+	this.setDelegateClickListener("#" + nameSpace + suffix + " " + "#tables" + " " + ".edit-lnk", "editLnkRecordEvent");
 
 	// Delete link
-	this.setDelegateClickListener("#" + nameSpace + "s" + " " + "#tables" + " " + ".delete-lnk", "deleteLnkRecordEvent");
+	this.setDelegateClickListener("#" + nameSpace + suffix + " " + "#tables" + " " + ".delete-lnk", "deleteLnkRecordEvent");
 	
 	 
 	/* --------------------------Pager--------------------------*/

@@ -22,14 +22,14 @@ function Home(){
 Home.prototype.CONTAINER_DEFAULT = "#homeContainer #page_default";
 Home.prototype.PAGE_DEFAULT = "../admin/default.html";
 
-Home.prototype.CONTAINER_BOOKS = "#homeContainer #page_books";
-Home.prototype.PAGE_BOOKS = "../admin/books.html";
+Home.prototype.CONTAINER_BOOKS = "#homeContainer #page_book-s";
+Home.prototype.PAGE_BOOKS = "../admin/book-s.html";
 
-Home.prototype.CONTAINER_AUTHORS = "#homeContainer #page_authors";
-Home.prototype.PAGE_AUTHORS = "../admin/authors.html";
+Home.prototype.CONTAINER_AUTHORS = "#homeContainer #page_author-s";
+Home.prototype.PAGE_AUTHORS = "../admin/author-s.html";
 
-Home.prototype.CONTAINER_TAGS = "#homeContainer #page_tags";
-Home.prototype.PAGE_TAGS = "../admin/tags.html";
+Home.prototype.CONTAINER_TAGS = "#homeContainer #page_tag-s";
+Home.prototype.PAGE_TAGS = "../admin/tag-s.html";
 
 
 // Methods

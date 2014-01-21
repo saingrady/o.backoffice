@@ -24,8 +24,8 @@ Tag.prototype.NAME_SPACE = "page_tag";
 Tag.prototype.PAGE_RECORD = "../admin/tag.html";
 Tag.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + Tag.prototype.NAME_SPACE;
 Tag.prototype.NAV_RECORD = "#" + Tag.prototype.NAME_SPACE + "s" + "_nav";
-Tag.prototype.FILTER_RECORDS = "#" + Tag.prototype.NAME_SPACE + "s"+ " " + "#filters";
-Tag.prototype.TABLE_RECORDS = "#" + Tag.prototype.NAME_SPACE + "s" + " " + "#tables";
+Tag.prototype.FILTER_RECORDS = "#" + Tag.prototype.NAME_SPACE + Tag.prototype.MULTIPLE_SUFFIX + " " + "#filters";
+Tag.prototype.TABLE_RECORDS = "#" + Tag.prototype.NAME_SPACE + Tag.prototype.MULTIPLE_SUFFIX + " " + "#tables";
 Tag.prototype.TABLE_RECORD = "#" + Tag.prototype.NAME_SPACE + " " + "#table";
 Tag.prototype.CACHE_RECORDS = Tag.prototype.NAME_SPACE + "_cache";
 

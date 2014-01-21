@@ -61,6 +61,7 @@ BaseBackoffice.prototype.TABLE_RECORD = "";
 BaseBackoffice.prototype.FILTER_RECORDS = "";
 BaseBackoffice.prototype.TABLE_RECORDS = "";
 BaseBackoffice.prototype.CACHE_RECORDS = "";
+BaseBackoffice.prototype.MULTIPLE_SUFFIX = "-s";
 
 //=========== DAO =============== //
 BaseBackoffice.prototype.recordAPI = new BaseAPI();
