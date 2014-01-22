@@ -24,10 +24,10 @@ BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHan
 										
 
 // Ajax Request
-BaseAPI.prototype.request = function (httpMethod, requestUrl, requestData, dataType, contentType, responseHandler,failureHandler){
+BaseAPI.prototype.request = function (requestMethod, requestUrl, requestData, dataType, contentType, responseHandler,failureHandler){
 							                
 							                $.ajax({
-							                    type: httpMethod,
+							                    type: requestMethod,
 							                    url: requestUrl,
 							                    crossDomain: true,
 							                    accept: "*",
