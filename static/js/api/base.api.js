@@ -18,7 +18,7 @@ BaseAPI.prototype.postRequest = function(requestUrl,requestData,responseHandler,
 
 // DELETE 
 BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHandler){
-											return this.request("DELETE", requestUrl, null, "json", "application/json", responseHandler, failureHandler);
+											return this.request("DELETE", requestUrl, {}, "json", "application/json", responseHandler, failureHandler);
 									};
 
 										
