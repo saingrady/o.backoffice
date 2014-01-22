@@ -605,7 +605,7 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
 	// Reset paging when save more record
 	//resetPaging(brands);
 
-
+   //var requestData = Converter.prototype.getJsonString(o.getRequestData(o.TABLE_RECORD));
 	var requestData = o.getRequestData(o.TABLE_RECORD);
 	console.log("requestData: ", requestData);
 
@@ -2192,7 +2192,17 @@ BaseBackoffice.prototype.getRequestData = function (mainSelector, all, prefix){
 				var trimValue = BaseBackoffice.prototype.trimString(value);
 				//console.log(value + "[" + value.length + "]" + " with " + trimValue + "[" + trimValue.length + "]");
 				
+				
+				/*
+				if ($(this).is("select") && $(this).prop("multiple")) {
+					requestData[data] = String(trimValue).split(",");
+				} else {
+					requestData[data] = trimValue;
+				}
+				*/
+				
 				requestData[data] = trimValue;
+
 			}
 		});
 		
