@@ -122,3 +122,10 @@ Converter.prototype.getTimesFromDate = function (dateValue){
     var date = new Date(dateValue);
     return date.getHours();
 };
+
+/**
+ * Convert values in object to Json format
+ * */
+Converter.prototype.getJsonString = function (obj){
+	return JSON.stringify(obj);
+};
