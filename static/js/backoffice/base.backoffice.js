@@ -2194,9 +2194,9 @@ BaseBackoffice.prototype.getRequestData = function (mainSelector, all, prefix){
 				
 				
 				
-				//if ($(this).is("select") && $(this).prop("multiple")) {
-				// both work for single select or multiple select
-				if ($(this).is("select") && (trimValue)) {
+				// multiple select as array [], not same to single select
+				//if ($(this).is("select") && (trimValue)) {
+				if ($(this).is("select") && $(this).prop("multiple") && (trimValue)) {
 					requestData[data] = String(trimValue).split(",");
 				} else {
 					requestData[data] = trimValue;
@@ -2226,8 +2226,8 @@ BaseBackoffice.prototype.giveDomData = function (mainSelector, data){
 			//choose corresponding data
 			var value = data[key];
 			
-			// both work for single select or multiple select
-			if ($(this).is("select") && (value)){
+			// multiple select as array [], not same to single select
+			if ($(this).is("select") && $(this).prop("multiple") && (value)) {
 				// input select is special
 				$(this).val(String(value).split(","));	
 			} else {
