@@ -2193,15 +2193,17 @@ BaseBackoffice.prototype.getRequestData = function (mainSelector, all, prefix){
 				//console.log(value + "[" + value.length + "]" + " with " + trimValue + "[" + trimValue.length + "]");
 				
 				
-				/*
-				if ($(this).is("select") && $(this).prop("multiple")) {
+				
+				//if ($(this).is("select") && $(this).prop("multiple")) {
+				// both work for single select or multiple select
+				if ($(this).is("select") && (trimValue)) {
 					requestData[data] = String(trimValue).split(",");
 				} else {
 					requestData[data] = trimValue;
 				}
-				*/
 				
-				requestData[data] = trimValue;
+				
+				//requestData[data] = trimValue;
 
 			}
 		});
@@ -2224,6 +2226,7 @@ BaseBackoffice.prototype.giveDomData = function (mainSelector, data){
 			//choose corresponding data
 			var value = data[key];
 			
+			// both work for single select or multiple select
 			if ($(this).is("select") && (value)){
 				// input select is special
 				$(this).val(String(value).split(","));	
