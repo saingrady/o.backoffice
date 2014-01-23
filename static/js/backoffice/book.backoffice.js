@@ -471,40 +471,16 @@ Book.prototype.removeFilterEvent = function (event){
 
 Book.prototype.generateDropdownAuthor = function(selector, isPleaseSelect){
 	
-	var authorAPI = new AuthorAPI();
-	var requestData = new Object();
-	
-	$(selector).empty();
-	if (isPleaseSelect){
-		$(selector).append($('<option></option>').val("").html("Please Select"));
-	}
-	
-	authorAPI.getRecord(requestData, function(jRecords){
+	var o = this;
+	o.generateDropdown(selector, isPleaseSelect, new TagAPI(), {});
 		
-		$.each(jRecords, function(index, value){
-			$(selector).append($('<option></option>').val(value["id"]).html(value["name"]));
-		});
-		
-	}, authorAPI.failureHandler);	
 };
 
 Book.prototype.generateDropdownTag = function(selector, isPleaseSelect){
 	
-	var tagAPI = new TagAPI();
-	var requestData = new Object();
+	var o = this;
+	o.generateDropdown(selector, isPleaseSelect, new AuthorAPI(), {});
 	
-	$(selector).empty();
-	if (isPleaseSelect){
-		$(selector).append($('<option></option>').val("").html("Please Select"));
-	}
-	
-	tagAPI.getRecord(requestData, function(jRecords){
-		
-		$.each(jRecords, function(index, value){
-			$(selector).append($('<option></option>').val(value["id"]).html(value["name"]));
-		});
-		
-	}, tagAPI.failureHandler);	
 };
 
 /**
