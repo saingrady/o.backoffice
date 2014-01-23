@@ -2017,100 +2017,115 @@ BaseBackoffice.prototype.sendFormDataAll = function (formName) {
  * */
 BaseBackoffice.prototype.sendFormDataOneByOne = function (selectors) {
 	
-		// Shortcut
-		var o = this;
+	// Shortcut
+	var o = this;
+
+	var formData;
+	var biggest_image_dimension = 0;
 	
-		var formData;
-		var biggest_image_dimension = 0;
+	$(selectors).each(function(){
 		
-		$(selectors).each(function(){
-			
-			
-			formData = new FormData();
-			biggest_image_dimension = 0;
-			
-			//formData.append( $(this).attr("id") , $(this)[0].files[0] );
-			var file = $(this)[0].files[0];
-			if (file == undefined) {
-				file = $(this).data("file");
-			}
-			formData.append( $(this).attr("id") , file );
+		
+		formData = new FormData();
+		biggest_image_dimension = 0;
+		
+		//formData.append( $(this).attr("id") , $(this)[0].files[0] );
+		var file = $(this)[0].files[0];
+		if (file == undefined) {
+			file = $(this).data("file");
+		}
+		formData.append( $(this).attr("id") , file );
 
+		
+		var image = $(this).parent().find("img");
+		
+		var uploadUrl = "/api/smartswap/image/upload";
+		
+		if ( undefined !== image[0] ){
+			biggest_image_dimension = Math.max( image[0].naturalWidth, image[0].naturalHeight );
+			/*
+			o.getUploadUrl("?retainParams=true&imageSize=" + biggest_image_dimension, function(uploadUrl){
+				o.uploadTo(uploadUrl, formData, $(image).attr("id"));
+			});
+			*/
+			o.uploadTo(uploadUrl + "/" + biggest_image_dimension, formData, $(image).attr("id"));
+		} else {
+			/*
+			o.getUploadUrl(undefined, function(uploadUrl){
+				o.uploadTo(uploadUrl, formData, $(image).attr("id"));
+			});
+			*/
+			o.uploadTo(uploadUrl, formData, $(image).attr("id"));
+		}
+		
+	});
 			
-			var image = $(this).parent().find("img");
-			
-			if ( undefined !== image[0] ){
-				biggest_image_dimension = Math.max( image[0].naturalWidth, image[0].naturalHeight );
-				o.getUploadUrl("?retainParams=true&imageSize=" + biggest_image_dimension, function(uploadUrl){
-					o.uploadTo(uploadUrl, formData);
-				});
-			} else {
-				o.getUploadUrl(undefined, function(uploadUrl){
-					o.uploadTo(uploadUrl, formData);
-				});
-			}
-			
-		});
-				
 }; 
-	
+
 /***/
-BaseBackoffice.prototype.uploadTo = function (uploadUrl, formData, successHandler){
-		$.ajax({
-			url: uploadUrl,
-			data: formData,
-			processData: false,
-			contentType: false,
-			type: 'POST',
-			//async: false,
-			
-			complete: function (  jqXHR,  textStatus ) {
-				//console.log('complete');
-				//console.log(this.url);
-				//console.log( jqXHR,  textStatus );
-			},
+BaseBackoffice.prototype.uploadTo = function (uploadUrl, formData, defaultId, successHandler){
+	$.ajax({
+		url: uploadUrl,
+		data: formData,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		//async: false,
+		
+		complete: function (  jqXHR,  textStatus ) {
+			//console.log('complete');
+			//console.log(this.url);
+			//console.log( jqXHR,  textStatus );
+		},
 
-			error: function (  jqXHR,  textStatus,  errorThrown  ) {
-				//console.log('error');
-				//console.log(this.url);
-				//console.log( jqXHR,  textStatus,  errorThrown );
-			},
+		error: function (  jqXHR,  textStatus,  errorThrown  ) {
+			//console.log('error');
+			//console.log(this.url);
+			//console.log( jqXHR,  textStatus,  errorThrown );
+		},
+		
+		success: function( data,  textStatus,  jqXHR ){
+			//console.log('success');
+			//console.log(this.url);
+			//console.log( data,  textStatus,  jqXHR );
 			
-			success: function( data,  textStatus,  jqXHR ){
-				//console.log('success');
-				//console.log(this.url);
-				//console.log( data,  textStatus,  jqXHR );
-				
-				
-				if (successHandler) {
-					successHandler(data);
-				} else {
-					//do something here
-					$.each(data, function(k,v){
-						
-						var img = $("#" + k).parent().find("img");
-						var fileLink = $("#" + k).parent().find("a");
-						
-						if ( img.length > 0 ) {
-							
-							//keyup to refresh validation
-							$(img).load(function() {
-								$(".loading").hide();
-								$(img).keyup();
-								$(this).unbind('load');
-							});
+			
+			if (successHandler) {
+				successHandler(data);
+			} else {
+				//do something here
+				$.each(data, function(k,v){
 					
-							img[0].src = v[0];
-							$(img).removeClass("opaque");
-						} else if ( fileLink.length > 0 ){
-							fileLink.attr("href",v[0]);
-						}
+					var img = $("#" + k).parent().find("img");
+					if ( img.length == 0 ) {
+						img = $("#" + defaultId).parent().find("img");
+					} 
+					
+					var fileLink = $("#" + k).parent().find("a");
+					
+					if ( img.length > 0 ) {
 						
-					});
-				}
+						//keyup to refresh validation
+						$(img).load(function() {
+							$(".loading").hide();
+							$(img).keyup();
+							$(this).unbind('load');
+						});
+				
+						//$(img[0]).val(v[0]);
+						//img[0].src = v[0];
+						$(img[0]).val(v);
+						img[0].src = v;
+						$(img).removeClass("opaque");
+					} else if ( fileLink.length > 0 ){
+						fileLink.attr("href",v[0]);
+					}
+					
+				});
 			}
-		});
-}; 
+		}
+	});
+};  
 	 
 
 

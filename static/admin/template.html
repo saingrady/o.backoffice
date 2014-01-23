@@ -9,11 +9,12 @@
     button
  -->
 <script id="imageFormTemplate" type="text/x-jQuery-tmpl">
-    <form method="POST" name="${formName}" id="${formName}" enctype="multipart/form-data">
-        <label class="name">Flag</label>
-        <img alt="" src="" class="preview" id="${imgName}" name="${imgName}">
-        <input type="file" id="${inputName}" name="${inputName}">
-        <button id="${buttonName}">Upload file</button>
+    <form class="imageForm" method="POST" name="${formName}" id="${formName}">
+        <span class="name">${labelName}</span>
+        <!-- Image -->
+        <img alt="" src="" id="${imgName}" name="${imgName}" class="requestData">
+        <input class="imageFile" type="file" id="${inputName}_${imgName}" name="${inputName}_${imgName}" style="display:none;">
+        <button class="imageUpload" id="${buttonName}" >Upload file</button>
     </form>
 </script>
 
@@ -21,7 +22,7 @@
     <form class="imageForm" method="POST" name="${formName}" id="${formName}">
         <span class="name">${labelName}</span>
         <!-- Image -->
-        <img alt="" src="" id="${imgName}" name="${imgName}">
+        <img alt="" src="" id="${imgName}" name="${imgName}" class="requestData">
         <input class="imageFile" type="file" id="${inputName}_${imgName}" name="${inputName}_${imgName}" style="display:none;">
         <button class="imageUpload" id="${buttonName}" >Upload file</button>
         <a id="removeExtraImage" class="icon-trash"></a>
