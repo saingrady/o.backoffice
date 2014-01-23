@@ -2373,6 +2373,31 @@ BaseBackoffice.prototype.callDynamicFunction = function (functionName){
 		window[functionName].apply();
 }; 
 
+/**
+ * Generate select options
+ * */
+BaseBackoffice.prototype.generateDropdown = function(selector, isPleaseSelect, api, requestData){
+	
+	if (!requestData) {
+		requestData = new Object();
+		//requestData = {};
+	}
+	
+	// clear first
+	$(selector).empty();
+	
+	if (isPleaseSelect){
+		$(selector).append($('<option></option>').val("").html("Please Select"));
+	}
+	
+	api.getRecord(requestData, function(jRecords){
+		
+		$.each(jRecords, function(index, value){
+			$(selector).append($('<option></option>').val(value["id"]).html(value["name"]));
+		});
+		
+	}, api.failureHandler);	
+};
 
 // =========== IoC =============== //
 // Statefull
