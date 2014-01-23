@@ -2223,6 +2223,11 @@ BaseBackoffice.prototype.getRequestData = function (mainSelector, all, prefix){
 				
 				
 				//requestData[data] = trimValue;
+				
+				// double check, if image have no value assigned
+				if ($(this).is("img") && !(value)){
+					requestData[data] = $(this).attr("src");
+				}
 
 			}
 		});
@@ -2258,7 +2263,7 @@ BaseBackoffice.prototype.giveDomData = function (mainSelector, data){
 				console.log("option----");
 			}
 			
-			// extra preview purpose
+			// extra preview purpose, it might work with value already
 			if ($(this).is("img")){
 				$(this).attr("src", value);
 			}
