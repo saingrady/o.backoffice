@@ -2250,22 +2250,24 @@ BaseBackoffice.prototype.giveDomData = function (mainSelector, data){
 			//choose corresponding data
 			var value = data[key];
 			
-			// multiple select as array [], not same to single select
-			if ($(this).is("select") && $(this).prop("multiple") && (value)) {
-				// input select is special
-				$(this).val(String(value).split(","));	
-			} else {
-				// inputs, img
-				$(this).val(value);	
-			}
-			
-			if ($(this).is("option")){
-				console.log("option----");
-			}
-			
-			// extra preview purpose, it might work with value already
-			if ($(this).is("img")){
-				$(this).attr("src", value);
+			if (value) {
+				// multiple select as array [], not same to single select
+				if ($(this).is("select") && $(this).prop("multiple") && (value)) {
+					// input select is special
+					$(this).val(String(value).split(","));	
+				} else {
+					// inputs, img
+					$(this).val(value);	
+				}
+				
+				if ($(this).is("option")){
+					console.log("option----");
+				}
+				
+				// extra preview purpose, it might work with value already
+				if ($(this).is("img")){
+					$(this).attr("src", value);
+				}
 			}
 		});
 		
