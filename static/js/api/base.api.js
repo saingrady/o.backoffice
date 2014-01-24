@@ -8,16 +8,19 @@ function BaseAPI() {
 	
 // GET 
 BaseAPI.prototype.getRequest = function(requestUrl,requestData,responseHandler,failureHandler) {
+											// return is useful for synchronous request
 											return this.request("GET", requestUrl, requestData, "json", "application/json", responseHandler, failureHandler);
 									};
 
 // POST
 BaseAPI.prototype.postRequest = function(requestUrl,requestData,responseHandler,failureHandler) {
+											// return is useful for synchronous request
 											return this.request("POST", requestUrl, requestData, "json", "application/json", responseHandler, failureHandler);
 									};
 
 // DELETE 
 BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHandler){
+											// return is useful for synchronous request
 											return this.request("DELETE", requestUrl, {}, "json", "application/json", responseHandler, failureHandler);
 									};
 
