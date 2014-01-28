@@ -184,3 +184,39 @@
 <script id="paginationTemplate" type="text/x-jQuery-tmpl">
     <span>${pageIndex} / ${pageCount}</span>
 </script>
+
+<script id="noImageTemplate" type="text/x-jQuery-tmpl">
+                    <!-- no image  -->
+                    <div class="field-box">
+                        <label>Header image:</label>
+                        <div class="gallery">
+                            <div class="new-img" style="position: relative;">
+                                <!-- <a data-toggle="modal" href="#myModal"> -->
+                                <img src="/img/new-gallery-img.png" id="image2" name="image2" class="addImage logo_img preview img-responsive" style="margin: 0px;">
+                                <div class="loading" style="display: none;"></div>
+                                <input class="imageFile" type="file" style="display:none;">
+                            </div>
+                        </div>
+                    </div>
+</script>
+
+<script id="haveImageTemplate" type="text/x-jQuery-tmpl">
+                     <!-- have image -->
+                     <div class="field-box">
+                        <label>Header image:</label>
+                        <div class="gallery">
+                            <div class="img-container" style="margin: 0px;">
+                                <div class="img-box">
+                                    <span class="icon edit">
+                                        <!-- <a data-toggle="modal" href="#myModal"><i class="gallery-edit"></i></a> -->
+                                        <a class="editImage" title="edit image"><i class="gallery-edit"></i></a>
+                                    </span>
+                                    <span class="icon trash">
+                                        <a class="removeImage" title="remove image"><i class="gallery-trash"></i></a>
+                                    </span>
+                                    <img src="/img/gallery3.jpg" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</script>

@@ -106,6 +106,7 @@ BaseBackoffice.prototype.initRecords = function (isFilterInit){
 			
 			o.recordAPI.getRecord(requestData, function(jRecords){
 				
+						//o.records.TABLE_RECORDS = jRecords["items"];
 						o.records.TABLE_RECORDS = jRecords;
 						
 						//setPaging("NEXT", books, 10, jRecords.cursorKey, "#booksPager .pager #previous-lnk", "#booksPager .pager #next-lnk");
@@ -118,7 +119,7 @@ BaseBackoffice.prototype.initRecords = function (isFilterInit){
 
 							$(record).appendTo(o.TABLE_RECORDS);
 							
-							console.log(record);
+							//console.log(record);
 							
 						});
 
@@ -320,7 +321,7 @@ BaseBackoffice.prototype.deleteBtnRecordEvent = function (event){
 			//confirmation
 			$('#deleteModal').modal('show');
 			//$('#deleteModal').modal({ keyboard: false });
-			$('#deleteModal').on('hidden', function () {
+			$('#deleteModal').on('hidden.bs.modal', function () {
 				  // do something
 				if (BaseBackoffice.confirmDelete) {
 					
@@ -330,7 +331,7 @@ BaseBackoffice.prototype.deleteBtnRecordEvent = function (event){
 				        	
 				        	//reset paging
 				        	o.resetPaging(o.records);
-
+				        	
 				        	//reload page
 				        	o.reloadPage();
 							
@@ -487,7 +488,7 @@ BaseBackoffice.prototype.changeModeView = function (/*editHandler, deleteHandler
 		//$('body').delegate("#btn-delete", "click", function(){ deleteHandler(); });
 		
 		// duplicate notifyContainer to buttom of page
-		$("#homeContainer").after($("#notifyContainer").clone(true));
+		//$("#homeContainer").after($("#notifyContainer").clone(true));
 };
 	
 /***/
@@ -504,7 +505,7 @@ BaseBackoffice.prototype.changeModeEdit = function (/*cancelHandler, saveHandler
 		//$('body').delegate("#btn-save", "click", function(){ saveHandler(); });
 		
 		// duplicate notifyContainer to buttom of page
-		$("#homeContainer").after($("#notifyContainer").clone(true));
+		//$("#homeContainer").after($("#notifyContainer").clone(true));
 };
 
 /***/
@@ -605,8 +606,8 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
 	// Reset paging when save more record
 	//resetPaging(brands);
 
-   //var requestData = Converter.prototype.getJsonString(o.getRequestData(o.TABLE_RECORD));
-	var requestData = o.getRequestData(o.TABLE_RECORD);
+
+	var requestData = Converter.prototype.getJsonString(o.getRequestData(o.TABLE_RECORD));
 	console.log("requestData: ", requestData);
 
 	
@@ -702,7 +703,7 @@ BaseBackoffice.prototype.previousPagerRecordEvent = function (event){
 
 	// Shortcut
 	var o = this;
-	o.previousPager(o.records, 10, initBrands);
+	o.previousPager(o.records, 10, o.initRecords);
 };
 
 /**
@@ -713,7 +714,7 @@ BaseBackoffice.prototype.nextPagerRecordEvent = function (event){
 
 	// Shortcut
 	var o = this;
-	o.nextPager(o.records, 10, initBrands);
+	o.nextPager(o.records, 10, o.initRecords);
 };
 
 /**
@@ -736,6 +737,7 @@ BaseBackoffice.prototype.pageEvent = function(pageNumber, event){
     o.initRecords();
     
 };
+
 // ================================================================================ //
 
 // support Methods
@@ -798,8 +800,8 @@ BaseBackoffice.prototype.ajaxSetting = function (){
     	    data: null
     	});
     	*/
-    		
-	    /*
+    	
+		/*
     	// every ajax request from now so on		
     	jQuery.ajaxSetup({
     	    beforeSend: function (jqXHR, settings) {
@@ -1354,7 +1356,7 @@ BaseBackoffice.prototype.resetVisible = function (selectorOld, selectorNew){
 /***/
 BaseBackoffice.prototype.setBtnClass = function (classMarker){
 
-		var className = "btn btn-primary" + " " + classMarker;
+		var className = "btn-flat primary" + " " + classMarker;
 		
 		$("#edit-btn").attr("class", className);
 		$("#delete-btn").attr("class", className);
@@ -1665,36 +1667,8 @@ BaseBackoffice.prototype.uploadFile = function (file){
 			$(img).parent().find(":file").data("file", file);
 			//console.log(file.name, $(img).parent().attr("id"));
 			
-			var fileReader = new FileReader();
-			
-			fileReader.onload = function (e) {
-				
-				// Render thumbnail.
-				$(img).attr('src', e.target.result);
-	        	$(img).addClass("opaque");
-	        	
-	        	//keyup to refresh validation
-	        	$(img).keyup();
-				
-			};
-
-			$(img).load(function() {
-				
-				//console.log(this.naturalHeight, this.naturalWidth);
-				
-				$(this).removeAttr("data-img-url-valid");
-		
-				//refresh validation after image enlarge more space
-				o.validateRecord();
-		
-				// upload image immediately after preview image
-				o.sendFormDataOneByOne($(img).parent().find(".imageFile"));
-		
-				$(this).unbind('load');
-			
-			});
-			
-			fileReader.readAsDataURL(file);
+		    o.sendFile($(img).attr("id"), file);
+		    
 		}
 	}; 
 	
@@ -1713,63 +1687,17 @@ BaseBackoffice.prototype.handleFileDropEvent = function (evt) {
 	    evt.stopPropagation();
 	    evt.preventDefault();
 
-	    var files = evt.dataTransfer.files; // FileList object.
+	    var file = evt.dataTransfer.files[0]; // FileList object.
 
 	    var img = evt.target;
 	    // Automatically set a dnd file to input file
 	    //$(img).parent().find(":file")[0] = files[0];
 	    
 	    // if we cannot assign file to input file control directly, so assign file to its data 
-	    $(img).parent().find(":file").data("file", files[0]);
+	    //$(img).parent().find(":file").data("file", files[0]);
 	    
-	    // Loop through the FileList and render image files as thumbnails.
-	    for (var i = 0, f; f = files[i]; i++) {
+	    o.sendFile($(img).attr("id"), file);
 
-	      	
-	      // Only process image files.
-	      if (!f.type.match('image.*')) {
-	        continue;
-	      }
-	      
-	      /*
-	      if (!(f.type.match('image/jpeg') || f.type.match('image/png')))  {
-	          alert("inputed file path is not an image!\nit should be: *.jpg, *.png");
-	          continue;
-	      }	
-	      */
-
-
-	      var reader = new FileReader();
-
-	      // Closure to capture the file information.
-	      reader.onload = (function(theFile) {
-	        return function(e) {
-	            // Render thumbnail.
-	        	$(img).attr('src', e.target.result);
-	                $(img).addClass("opaque");
-
-		        //keyup to refresh validation
-	        	$(img).keyup();
-	        };
-	      })(f);
-
-	      $(img).load(function() {
-	      	
-	    	  	$(this).removeAttr("data-img-url-valid");
-
-		        //refresh validation after image enlarge more space
-		        o.validateRecord();
-		        
-			    // upload image immediately after preview image, it should be asynchronous
-		        o.sendFormDataOneByOne($(img).parent().find(".imageFile"));
-			
-		        $(this).unbind('load');
-		        
-	      });
-	      
-	      // Read in the image file as a data URL.
-	      reader.readAsDataURL(f);
-	    }
 };
 	
 
@@ -1787,22 +1715,22 @@ BaseBackoffice.prototype.checkRequiredFileName = function (input){
 };
 
 /**
- * Choose image file first
+ * Choose input file first
  */
-BaseBackoffice.prototype.chooseImageEvent = function (event){
+BaseBackoffice.prototype.chooseFileEvent = function (event){
 		var that = event.target;
 		console.log("event:");
 		console.log(event);
 		// don't need to submit the form
 		event.preventDefault();
-		console.log("chooseImage");
-	    $(that).parent().find(".imageFile").trigger("click");
+		console.log("chooseFile");
+	    $(that).parent().find(".inputFile").trigger("click");
 }; 
 
 /**
- * choose image - image change - display image
+ * choose file - file change - send file - display file/image
  * */
-BaseBackoffice.prototype.previewInputFileEvent = function (event){
+BaseBackoffice.prototype.sendFileEvent = function (event){
 	
 	// Shortcut
 	var o = this;
@@ -1819,54 +1747,57 @@ BaseBackoffice.prototype.previewInputFileEvent = function (event){
         return;
     }
 
-    //processing();
+    o.sendFile($(input).parent().find("img").attr("id"), input.files[0]);
 
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-        	
-        	
-        	console.log("onloadend");
-        	
-		    //preview input file
-	        $(input).parent().find("img").attr('src', e.target.result);
-                $(input).parent().find("img").addClass("opaque");
-
-	        //keyup to refresh validation
-	        $(input).parent().find("img").keyup();
-	
-	        //processed();
-
-        };
-
-        $(input).parent().find("img").load(function() {
-        	
-        		//check image solutions in pixels
-        		/*
-        		if ( this.naturalWidth !== $(this).data("width") || this.naturalHeight !== $(this).data("height")) {
-        			alert("width x height should be: " + $(this).data("width") + " pixels x " + $(this).data("height") + " pixels");
-        		}
-        		*/
-
-        		$(this).removeAttr("data-img-url-valid");
-
-        		//refresh validation after image enlarge more space
-        		o.validateRecord();
-
-                // upload image immediately after preview image, it should be asynchronous
-		        o.sendFormDataOneByOne($(input).parent().find(".imageFile"));
-        		
-	        
-		        $(this).unbind('load');
-	        
-		        console.log("-----------------------------------------");
-
-        });
-        
-        reader.readAsDataURL(input.files[0]);
-    }
 }; 
+
+BaseBackoffice.prototype.sendFile = function (name, file){
+
+	// Shortcut
+	var o = this;
+	
+	//processing();
+
+    if (name && file) {
+    	
+	    /*
+	    // Only process image files.
+	    if (!file.type.match('image.*')) {
+	    	//alert("not image");
+	    }
+	    
+	  	if (!(f.type.match('image/jpeg') || f.type.match('image/png')))  {
+	      alert("inputed file path is not an image!\nit should be: *.jpg, *.png");
+	  	}	
+	    */
+    	
+        var fileReader = new FileReader();
+
+        fileReader.onload = function (e) {
+        	console.log("file reader, onLoaded");
+        	// local variable, hidden image
+        	var image = new Image();
+        	image.onload = function (e) {
+	        		console.log("image, onLoaded");
+	        		
+	        		//check image solutions in pixels
+	        		/*
+	        		if ( this.naturalWidth !== $(this).data("width") || this.naturalHeight !== $(this).data("height")) {
+	        			alert("width x height should be: " + $(this).data("width") + " pixels x " + $(this).data("height") + " pixels");
+	        		}
+	        		*/
+	        	
+	        		var biggest_image_dimension = Math.max( image.naturalWidth, image.naturalHeight );
+	                // upload image immediately after preview image, it should be asynchronous
+			        o.sendFormDataOne(name, file, biggest_image_dimension);
+	        		
+		        
+	        };
+	        image.src = fileReader.result;
+        }
+        fileReader.readAsDataURL(file);
+   }
+}
 
 /* --------------------Upload file--------------- */
 BaseBackoffice.prototype.chooseUrlEvent = function (event){
@@ -1912,7 +1843,7 @@ BaseBackoffice.prototype.markInputFileEvent = function(event){
         reader.readAsDataURL(input.files[0]);
     }
 }
-
+	
 /*
 getUploadUrl: function (parameters){
 	var url = "/api/domainName/blob/upload" + (undefined !== parameters ? parameters : "");
@@ -1930,7 +1861,7 @@ getUploadUrl: function (parameters){
 	
 /***/
 BaseBackoffice.prototype.getUploadUrl = function (parameters, callback){
-		var requestUrl = "/api/domainName/blob/upload" + (undefined !== parameters ? parameters : "");
+		var requestUrl = "/api/mch/blob/upload" + (undefined !== parameters ? parameters : "");
 		
 		// Asynchronous required
 		$.ajax({
@@ -1958,7 +1889,7 @@ BaseBackoffice.prototype.getUploadUrl = function (parameters, callback){
 /**
  * saveBtn need to upload file first  
  * */
-BaseBackoffice.prototype.sendFormDataAll = function (formName) {
+BaseBackoffice.prototype.sendFormData = function (formName) {
 
 	
 		// Shortcut
@@ -2015,117 +1946,112 @@ BaseBackoffice.prototype.sendFormDataAll = function (formName) {
 /**
  * saveBtn need to upload file first  
  * */
-BaseBackoffice.prototype.sendFormDataOneByOne = function (selectors) {
+BaseBackoffice.prototype.sendFormDataOne = function (name, file, size) {
 	
-	// Shortcut
-	var o = this;
-
-	var formData;
-	var biggest_image_dimension = 0;
+		// Shortcut
+		var o = this;
 	
-	$(selectors).each(function(){
+		var formData;
+		var biggest_image_dimension = 0;
 		
-		
+			
+			
 		formData = new FormData();
-		biggest_image_dimension = 0;
-		
-		//formData.append( $(this).attr("id") , $(this)[0].files[0] );
-		var file = $(this)[0].files[0];
-		if (file == undefined) {
-			file = $(this).data("file");
-		}
-		formData.append( $(this).attr("id") , file );
-
-		
-		var image = $(this).parent().find("img");
+		formData.append( name , file );
 		
 		var uploadUrl = "/api/smartswap/image/upload";
 		
-		if ( undefined !== image[0] ){
-			biggest_image_dimension = Math.max( image[0].naturalWidth, image[0].naturalHeight );
+		if ( size ){
 			/*
 			o.getUploadUrl("?retainParams=true&imageSize=" + biggest_image_dimension, function(uploadUrl){
 				o.uploadTo(uploadUrl, formData, $(image).attr("id"));
 			});
 			*/
-			o.uploadTo(uploadUrl + "/" + biggest_image_dimension, formData, $(image).attr("id"));
+			o.uploadTo(uploadUrl + "/" + size, formData, name);
 		} else {
 			/*
 			o.getUploadUrl(undefined, function(uploadUrl){
 				o.uploadTo(uploadUrl, formData, $(image).attr("id"));
 			});
 			*/
-			o.uploadTo(uploadUrl, formData, $(image).attr("id"));
+			o.uploadTo(uploadUrl, formData, name);
 		}
-		
-	});
 			
-}; 
-
-/***/
-BaseBackoffice.prototype.uploadTo = function (uploadUrl, formData, defaultId, successHandler){
-	$.ajax({
-		url: uploadUrl,
-		data: formData,
-		processData: false,
-		contentType: false,
-		type: 'POST',
-		//async: false,
-		
-		complete: function (  jqXHR,  textStatus ) {
-			//console.log('complete');
-			//console.log(this.url);
-			//console.log( jqXHR,  textStatus );
-		},
-
-		error: function (  jqXHR,  textStatus,  errorThrown  ) {
-			//console.log('error');
-			//console.log(this.url);
-			//console.log( jqXHR,  textStatus,  errorThrown );
-		},
-		
-		success: function( data,  textStatus,  jqXHR ){
-			//console.log('success');
-			//console.log(this.url);
-			//console.log( data,  textStatus,  jqXHR );
-			
-			
-			if (successHandler) {
-				successHandler(data);
-			} else {
-				//do something here
-				$.each(data, function(k,v){
-					
-					var img = $("#" + k).parent().find("img");
-					if ( img.length == 0 ) {
-						img = $("#" + defaultId).parent().find("img");
-					} 
-					
-					var fileLink = $("#" + k).parent().find("a");
-					
-					if ( img.length > 0 ) {
-						
-						//keyup to refresh validation
-						$(img).load(function() {
-							$(".loading").hide();
-							$(img).keyup();
-							$(this).unbind('load');
-						});
 				
-						//$(img[0]).val(v[0]);
-						//img[0].src = v[0];
-						$(img[0]).val(v);
-						img[0].src = v;
-						$(img).removeClass("opaque");
-					} else if ( fileLink.length > 0 ){
-						fileLink.attr("href",v[0]);
-					}
+}; 
+	
+/***/
+BaseBackoffice.prototype.uploadTo = function (uploadUrl, formData, name, successHandler){
+		//$(".loading").show();
+		var loading = $("#" + name).parent().find(".loading");
+		$(loading).show();
+		
+		$.ajax({
+			url: uploadUrl,
+			data: formData,
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			//async: false,
+			
+			complete: function (  jqXHR,  textStatus ) {
+				//console.log('complete');
+				//console.log(this.url);
+				//console.log( jqXHR,  textStatus );
+			},
+
+			error: function (  jqXHR,  textStatus,  errorThrown  ) {
+				//console.log('error');
+				//console.log(this.url);
+				//console.log( jqXHR,  textStatus,  errorThrown );
+			},
+			
+			success: function( data,  textStatus,  jqXHR ){
+				//console.log('success');
+				//console.log(this.url);
+				//console.log( data,  textStatus,  jqXHR );
+				
+				
+				if (successHandler) {
+					successHandler(data);
+				} else {
+					//do something here
+					$.each(data, function(k,v){
+						
+						//reference to DOM element
+						var image = $("#" + name);
+						var fileLink = $("#" + name).parent().find("a");
+						
+						if ( image.length > 0 ) {
+							
+							//keyup to refresh validation
+							$(image).load(function() {
+								// onLoaded
+								$(loading).hide();
+								$(image).keyup();
+
+								// because of DOM always exists
+								$(this).unbind('load');
+							});
 					
-				});
+							//$(img[0]).val(v[0]);
+							//img[0].src = v[0];
+
+							$(image[0]).val(v);
+							image[0].src = v;
+						} 
+						
+						if ( fileLink.length > 0 ){
+							fileLink.attr("href",v[0]);
+						}
+						
+					});
+				}
+				
+				//$(".loading").hide();
 			}
-		}
-	});
-};  
+		});
+}; 
 	 
 
 
@@ -2140,7 +2066,6 @@ BaseBackoffice.prototype.generateDynamicExtraImageUploadForm = function (formNam
 	// use template 
 	$("#extraImageFormTemplate").tmpl(templateData).appendTo(containerId);
 };
-
 
 
 /**
@@ -2188,89 +2113,89 @@ BaseBackoffice.prototype.isValidString = function (str){
  * @returns {Object}
  */
 BaseBackoffice.prototype.getRequestData = function (mainSelector, all, prefix){
-		var requestData = new Object();
-		var selectors;
-		selectors = $(mainSelector).find(":input,img");
-		
-		$(selectors).each(function(){
-			if (all ||  $( this ).hasClass( "requestData" )){
-				var data = $(this).attr("id");
-				if(prefix != undefined){
-					data = data.substring(prefix.length);
-				}
-				
-				var value = $(this).val();
-				
-				// optional
-				// if img already set val(), so it can get val() later	
-				//if ($(this).is("img")){
-				//	value = $(this).attr("src");
-				//}
-				
-				
-				var trimValue = BaseBackoffice.prototype.trimString(value);
-				//console.log(value + "[" + value.length + "]" + " with " + trimValue + "[" + trimValue.length + "]");
-				
-				
-				
-				// multiple select as array [], not same to single select
-				//if ($(this).is("select") && (trimValue)) {
-				if ($(this).is("select") && $(this).prop("multiple") && (trimValue)) {
-					requestData[data] = String(trimValue).split(",");
-				} else {
-					requestData[data] = trimValue;
-				}
-				
-				
-				//requestData[data] = trimValue;
-				
-				// double check, if image have no value assigned
-				if ($(this).is("img") && !(value)){
-					requestData[data] = $(this).attr("src");
-				}
-
-			}
-		});
-		
-		return requestData;
-}; 
+	var requestData = new Object();
+	var selectors;
+	selectors = $(mainSelector).find(":input,img");
 	
-/**
- * 
- * Iterate selectors to give
- *
- * @returns {Object}
- */
-BaseBackoffice.prototype.giveDomData = function (mainSelector, data){
-		var selectors;
-		selectors = $(mainSelector).find(":input,img");
-
-		$(selectors).each(function(){
-			var key = $(this).attr("id");
-			//choose corresponding data
-			var value = data[key];
-			
-			if (value) {
-				// multiple select as array [], not same to single select
-				if ($(this).is("select") && $(this).prop("multiple") && (value)) {
-					// input select is special
-					$(this).val(String(value).split(","));	
-				} else {
-					// inputs, img
-					$(this).val(value);	
-				}
-				
-				if ($(this).is("option")){
-					console.log("option----");
-				}
-				
-				// extra preview purpose, it might work with value already
-				if ($(this).is("img")){
-					$(this).attr("src", value);
-				}
+	$(selectors).each(function(){
+		if (all ||  $( this ).hasClass( "requestData" )){
+			var data = $(this).attr("id");
+			if(prefix != undefined){
+				data = data.substring(prefix.length);
 			}
-		});
+			
+			var value = $(this).val();
+			
+			// optional
+			// if img already set val(), so it can get val() later	
+			//if ($(this).is("img")){
+			//	value = $(this).attr("src");
+			//}
+			
+			
+			var trimValue = BaseBackoffice.prototype.trimString(value);
+			//console.log(value + "[" + value.length + "]" + " with " + trimValue + "[" + trimValue.length + "]");
+			
+			
+			
+			// multiple select as array [], not same to single select
+			//if ($(this).is("select") && (trimValue)) {
+			if ($(this).is("select") && $(this).prop("multiple") && (trimValue)) {
+				requestData[data] = String(trimValue).split(",");
+			} else {
+				requestData[data] = trimValue;
+			}
+			
+			
+			//requestData[data] = trimValue;
+			
+			// extra check, if we forget to assign value to image
+			if ($(this).is("img") && !(value)){
+				requestData[data] = $(this).attr("src");
+			}
+
+		}
+	});
+	
+	return requestData;
+}; 
+
+/**
+* 
+* Iterate selectors to give
+*
+* @returns {Object}
+*/
+BaseBackoffice.prototype.giveDomData = function (mainSelector, data){
+	var selectors;
+	selectors = $(mainSelector).find(":input,img");
+
+	$(selectors).each(function(){
+		var key = $(this).attr("id");
+		//choose corresponding data
+		var value = data[key];
 		
+		if (value) {
+			// multiple select as array [], not same to single select
+			if ($(this).is("select") && $(this).prop("multiple") && (value)) {
+				// input select is special
+				$(this).val(String(value).split(","));	
+			} else {
+				// inputs, img
+				$(this).val(value);	
+			}
+			
+			if ($(this).is("option")){
+				console.log("option----");
+			}
+			
+			// extra preview purpose, it might assign value already
+			if ($(this).is("img")){
+				$(this).attr("src", value);
+			}
+		}
+	});
+	
 }; 
 	
 /**
@@ -2424,6 +2349,7 @@ BaseBackoffice.prototype.generateDropdown = function(selector, isPleaseSelect, a
 		
 	}, api.failureHandler);	
 };
+
 
 // =========== IoC =============== //
 // Statefull

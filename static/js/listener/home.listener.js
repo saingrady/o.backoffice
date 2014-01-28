@@ -63,7 +63,7 @@ HomeListener.prototype.initListener = function (){
 	//dynamic-class choose image
 	//this.setDelegateClickListener(".imageUpload", "chooseImageEvent");
 	// dynamic-class image file change
-	//this.setDelegateChangeListener(".imageFile", "previewInputFileEvent");
+	//this.setDelegateChangeListener(".inputFile", "sendFileEvent");
 	
 	
 	/* --------------------Upload url--------------- */
