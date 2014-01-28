@@ -30,25 +30,22 @@ function HomeListener(){
 //@override
 HomeListener.prototype.initListener = function (){
 	
+	
+	
 	// brand event
-	this.setClickListener("#home_brand", "openBrandEvent");
+	//this.setDelegateClickListener("#home_brand", "openBrandEvent");
 		
-	// menu Book 
-	this.setClickListener("#page_book-s_nav", "openBookEvent");
-		
-	// menu Author 
-	this.setClickListener("#page_author-s_nav", "openAuthorEvent");
-		
-	// menu Tag
-	this.setClickListener("#page_tag-s_nav", "openTagEvent");
+	// menu Categories
+	this.setClickListener("#page_smartswapcategory-s_nav", "openCategoriesEvent");
 
+		
 
 	// modal
 	this.setDelegateClickListener("#no-delete-btn", "confirmDeleteEvent");
 	this.setDelegateClickListener("#yes-delete-btn", "confirmDeleteEvent");
 
 	/*--------------------------drag and drop -------------------*/
-	/*
+	
 	this.setDelegateDragoverListener(".logo_img", "handleDragOverEvent");
 	this.setDelegateDropListener(".logo_img", "handleFileDropEvent");
 	
@@ -57,21 +54,26 @@ HomeListener.prototype.initListener = function (){
 	
 	this.setDelegateDragoverListener(".dropZone", "handleDragOverEvent");
 	this.setDelegateDropListener(".dropZone", "dragAndDropMultipleFoldersOrFilesEvent");
-	*/
+	
 	
 	/* --------------------------Upload image ------------*/
-	//dynamic-class choose image
-	//this.setDelegateClickListener(".imageUpload", "chooseImageEvent");
-	// dynamic-class image file change
-	//this.setDelegateChangeListener(".inputFile", "sendFileEvent");
+	
+	//dynamic-class choose file
+	this.setDelegateClickListener(".imageUpload", "chooseFileEvent");
+	this.setDelegateClickListener(".addImage", "chooseFileEvent");
+	this.setDelegateClickListener(".editImage", "chooseFileEvent");
+	this.setDelegateClickListener(".removeImage", "removeImageEvent");
+	
+	// dynamic-class input file change
+	this.setDelegateChangeListener(".inputFile", "sendFileEvent");
 	
 	
 	/* --------------------Upload url--------------- */
 	//dynamic-class choose url
-	//this.setDelegateClickListener(".urlUpload", "chooseUrlEvent");
+	this.setDelegateClickListener(".urlUpload", "chooseUrlEvent");
 	//dynamic-class url file change
-	//this.setDelegateChangeListener(".urlFile", "markInputFileEvent");
-	
+	this.setDelegateChangeListener(".urlFile", "markInputFileEvent");
+
 };
 
 //=========== IoC =============== //

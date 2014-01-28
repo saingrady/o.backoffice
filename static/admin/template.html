@@ -187,36 +187,32 @@
 
 <script id="noImageTemplate" type="text/x-jQuery-tmpl">
                     <!-- no image  -->
-                    <div class="field-box">
-                        <label>Header image:</label>
                         <div class="gallery">
-                            <div class="new-img" style="position: relative;">
+                            <div class="new-img parent" style="position: relative;">
                                 <!-- <a data-toggle="modal" href="#myModal"> -->
-                                <img src="/img/new-gallery-img.png" id="image2" name="image2" class="addImage logo_img preview img-responsive" style="margin: 0px;">
+                                <img id="${imgName}" name="${imgName}" src="" class="requestData addImage logo_img previewImage img-responsive" style="margin: 0px;">
                                 <div class="loading" style="display: none;"></div>
-                                <input class="imageFile" type="file" style="display:none;">
+                                <input class="inputFile" type="file" style="display:none;">
                             </div>
                         </div>
-                    </div>
 </script>
 
 <script id="haveImageTemplate" type="text/x-jQuery-tmpl">
                      <!-- have image -->
-                     <div class="field-box">
-                        <label>Header image:</label>
                         <div class="gallery">
                             <div class="img-container" style="margin: 0px;">
-                                <div class="img-box">
-                                    <span class="icon edit">
+                                <div class="img-box parent">
+                                    <span class="icon edit mode-display">
                                         <!-- <a data-toggle="modal" href="#myModal"><i class="gallery-edit"></i></a> -->
                                         <a class="editImage" title="edit image"><i class="gallery-edit"></i></a>
                                     </span>
-                                    <span class="icon trash">
+                                    <span class="icon trash mode-display">
                                         <a class="removeImage" title="remove image"><i class="gallery-trash"></i></a>
                                     </span>
-                                    <img src="/img/gallery3.jpg" class="img-responsive">
+                                    <img id="${imgName}" name="${imgName}" src="" class="requestData logo_img img-responsive">
+                                    <div class="loading" style="display: none;"></div>
+                                    <input class="inputFile" type="file" style="display:none;">
                                 </div>
                             </div>
                         </div>
-                    </div>
 </script>

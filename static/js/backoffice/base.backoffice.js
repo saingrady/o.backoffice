@@ -180,6 +180,25 @@ BaseBackoffice.prototype.initRecord = function (){
 };
 
 /**
+ * Check existing record
+ * */		
+BaseBackoffice.prototype.isOldRecord = function (){
+	
+		// Shortcut
+		var o = this;
+		
+		var record = o.getRecordData(o.records.currentRecord);
+	
+		if (record) {
+			return true
+		} 
+			
+		return false;
+};
+
+
+
+/**
 * get template value
 * */		
 //can @override
@@ -1724,8 +1743,23 @@ BaseBackoffice.prototype.chooseFileEvent = function (event){
 		// don't need to submit the form
 		event.preventDefault();
 		console.log("chooseFile");
-	    $(that).parent().find(".inputFile").trigger("click");
+	    $(that).parents(".parent").find(".inputFile").trigger("click");
 }; 
+
+/**
+ * Remove image
+ */
+BaseBackoffice.prototype.removeImageEvent = function (event){
+	// Shortcut
+	var o = this;
+	
+	var imageName = $(event.target).parents(".parent").find("img").attr("id");
+	var containerName = $(event.target).parents("[id$='ImageContainer']").attr("id");
+	
+	$("#" + containerName).empty();
+	o.generateNewImageUploadBox(imageName, "#" + containerName);
+};
+
 
 /**
  * choose file - file change - send file - display file/image
@@ -1861,7 +1895,7 @@ getUploadUrl: function (parameters){
 	
 /***/
 BaseBackoffice.prototype.getUploadUrl = function (parameters, callback){
-		var requestUrl = "/api/domainName/blob/upload" + (undefined !== parameters ? parameters : "");
+		var requestUrl = "/api/mch/blob/upload" + (undefined !== parameters ? parameters : "");
 		
 		// Asynchronous required
 		$.ajax({
@@ -2054,6 +2088,18 @@ BaseBackoffice.prototype.uploadTo = function (uploadUrl, formData, name, success
 }; 
 	 
 
+
+BaseBackoffice.prototype.generateNewImageUploadBox = function (imgName, containerId){
+	var templateData = {'imgName': imgName};
+	// use template 
+	$("#noImageTemplate").tmpl(templateData).appendTo(containerId);
+};
+
+BaseBackoffice.prototype.generateOldImageUploadBox = function (imgName, containerId){
+	var templateData = {'imgName': imgName};
+	// use template 
+	$("#haveImageTemplate").tmpl(templateData).appendTo(containerId);
+};
 
 BaseBackoffice.prototype.generateDynamicImageUploadForm = function (formName,labelName,imgName,inputName,buttonName,containerId){
 	var templateData = {'formName': formName, 'labelName':labelName, 'imgName': imgName, 'inputName': inputName, 'buttonName': buttonName };
