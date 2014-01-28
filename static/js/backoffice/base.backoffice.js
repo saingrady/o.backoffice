@@ -1861,7 +1861,7 @@ getUploadUrl: function (parameters){
 	
 /***/
 BaseBackoffice.prototype.getUploadUrl = function (parameters, callback){
-		var requestUrl = "/api/mch/blob/upload" + (undefined !== parameters ? parameters : "");
+		var requestUrl = "/api/domainName/blob/upload" + (undefined !== parameters ? parameters : "");
 		
 		// Asynchronous required
 		$.ajax({
