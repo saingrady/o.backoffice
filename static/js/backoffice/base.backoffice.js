@@ -626,7 +626,8 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
 	//resetPaging(brands);
 
 
-	var requestData = Converter.prototype.getJsonString(o.getRequestData(o.TABLE_RECORD));
+	//var requestData = Converter.prototype.getJsonString(o.getRequestData(o.TABLE_RECORD));
+	var requestData = o.getRequestData(o.TABLE_RECORD);
 	console.log("requestData: ", requestData);
 
 	

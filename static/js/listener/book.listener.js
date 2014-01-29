@@ -48,6 +48,6 @@ var bookListener = new BookListener();
 
 //init
 //bookListener.initListener("page_book");
-bookListener.initListener(Book.prototype.NAME_SPACE);
+bookListener.initListener(BookBackoffice.prototype.NAME_SPACE);
 
 

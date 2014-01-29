@@ -33,11 +33,16 @@ HomeListener.prototype.initListener = function (){
 	
 	
 	// brand event
-	//this.setDelegateClickListener("#home_brand", "openBrandEvent");
-		
-	// menu Categories
-	this.setClickListener("#page_smartswapcategory-s_nav", "openCategoriesEvent");
-
+	this.setClickListener("#home_brand", "openBrandEvent");
+	
+	// menu Book 
+	this.setClickListener("#page_book-s_nav", "openBookEvent");
+	
+	// menu Author 
+	this.setClickListener("#page_author-s_nav", "openAuthorEvent");
+	
+	// menu Tag
+	this.setClickListener("#page_tag-s_nav", "openTagEvent");
 		
 
 	// modal

@@ -1,14 +1,14 @@
-console.log("book.backoffice");
+console.log("BookBackoffice.backoffice");
 
 // Auto complete
 // Normal Inheritance 
-Book.prototype = new BaseBackoffice();
-Book.prototype.constructor = Book;
-Book.prototype.parent = BaseBackoffice.prototype;
+BookBackoffice.prototype = new BaseBackoffice();
+BookBackoffice.prototype.constructor = BookBackoffice;
+BookBackoffice.prototype.parent = BaseBackoffice.prototype;
 
 // =========== Domain/JSON =============== //
 // Properties
-function Book(){
+function BookBackoffice(){
 	
 	// Shortcut
 	var o = this;
@@ -20,18 +20,18 @@ function Book(){
 
 //Define
 //@override
-Book.prototype.NAME_SPACE = "page_book";
-Book.prototype.PAGE_RECORD = "../admin/book.html";
-Book.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + Book.prototype.NAME_SPACE;
-Book.prototype.NAV_RECORDS = "#" + Book.prototype.NAME_SPACE + Book.prototype.MULTIPLE_SUFFIX + "_nav";
-Book.prototype.FILTER_RECORDS = "#" + Book.prototype.NAME_SPACE + Book.prototype.MULTIPLE_SUFFIX + " " + "#filters";
-Book.prototype.TABLE_RECORDS = "#" + Book.prototype.NAME_SPACE + Book.prototype.MULTIPLE_SUFFIX + " " + "#tables";
-Book.prototype.TABLE_RECORD = "#" + Book.prototype.NAME_SPACE + " " + "#table";
-Book.prototype.CACHE_RECORDS = Book.prototype.NAME_SPACE + "_cache";
+BookBackoffice.prototype.NAME_SPACE = "page_book";
+BookBackoffice.prototype.PAGE_RECORD = "../admin/book.html";
+BookBackoffice.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + BookBackoffice.prototype.NAME_SPACE;
+BookBackoffice.prototype.NAV_RECORDS = "#" + BookBackoffice.prototype.NAME_SPACE + BookBackoffice.prototype.MULTIPLE_SUFFIX + "_nav";
+BookBackoffice.prototype.FILTER_RECORDS = "#" + BookBackoffice.prototype.NAME_SPACE + BookBackoffice.prototype.MULTIPLE_SUFFIX + " " + "#filters";
+BookBackoffice.prototype.TABLE_RECORDS = "#" + BookBackoffice.prototype.NAME_SPACE + BookBackoffice.prototype.MULTIPLE_SUFFIX + " " + "#tables";
+BookBackoffice.prototype.TABLE_RECORD = "#" + BookBackoffice.prototype.NAME_SPACE + " " + "#table";
+BookBackoffice.prototype.CACHE_RECORDS = BookBackoffice.prototype.NAME_SPACE + "_cache";
 
 // =========== DAO =============== //
 //@override
-Book.prototype.recordAPI = new BookAPI();
+BookBackoffice.prototype.recordAPI = new BookAPI();
 
 // =========== Service =============== //
 // Methods
@@ -40,7 +40,7 @@ Book.prototype.recordAPI = new BookAPI();
  * Init records
  * */
 //@override
-Book.prototype.initRecords = function (isFilter){
+BookBackoffice.prototype.initRecords = function (isFilter){
 			// Shortcut	
 			var o = this;
 			o.parent.initRecords.call(o, isFilter);
@@ -62,7 +62,7 @@ Book.prototype.initRecords = function (isFilter){
  * Init record
  * */		
 //@override
-Book.prototype.initRecord = function (){
+BookBackoffice.prototype.initRecord = function (){
 			// Shortcut
 			var o = this;
 			o.parent.initRecord.call(o);
@@ -73,7 +73,7 @@ Book.prototype.initRecord = function (){
 * get template value
 * */		
 //@override
-Book.prototype.getTemplateValue = function (value){
+BookBackoffice.prototype.getTemplateValue = function (value){
 		// Shortcut
 		var o = this;
 		return o.parent.getTemplateValue.call(o, value);
@@ -83,7 +83,7 @@ Book.prototype.getTemplateValue = function (value){
 * get template dom
 * */		
 //@override
-Book.prototype.getTemplateDom = function (){
+BookBackoffice.prototype.getTemplateDom = function (){
 		// override
 		return $("#recordWithImageTemplate");
 };
@@ -92,7 +92,7 @@ Book.prototype.getTemplateDom = function (){
 * Pre Init records
 * */		
 //@override
-Book.prototype.preInitRecords = function (){
+BookBackoffice.prototype.preInitRecords = function (){
 			// Shortcut
 			var o = this;
 			o.parent.preInitRecords.call(o);
@@ -102,7 +102,7 @@ Book.prototype.preInitRecords = function (){
 * Post Init records
 * */		
 //@override
-Book.prototype.postInitRecords = function (jRecords){
+BookBackoffice.prototype.postInitRecords = function (jRecords){
 			// Shortcut
 			var o = this;
 			o.parent.postInitRecords.call(o);
@@ -116,7 +116,7 @@ Book.prototype.postInitRecords = function (jRecords){
 * Pre Init record
 * */		
 //@override
-Book.prototype.preInitRecord = function (){
+BookBackoffice.prototype.preInitRecord = function (){
 			// Shortcut
 			var o = this;
 			//o.parent.preInitRecord.call(o);
@@ -132,7 +132,7 @@ Book.prototype.preInitRecord = function (){
 * Post Init record
 * */		
 //@override
-Book.prototype.postInitRecord = function (){
+BookBackoffice.prototype.postInitRecord = function (){
 			// Shortcut
 			var o = this;
 			o.parent.postInitRecord.call(o);
@@ -143,7 +143,7 @@ Book.prototype.postInitRecord = function (){
  * Init filters
  * */		
 //@override
-Book.prototype.initFilters = function (){
+BookBackoffice.prototype.initFilters = function (){
 			// Shortcut
 			var o = this;
 			//o.parent.initFilters.call(o);
@@ -158,7 +158,7 @@ Book.prototype.initFilters = function (){
  * Add new
  * */	
 //@override
-Book.prototype.addNewRecordEvent = function (event){
+BookBackoffice.prototype.addNewRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.addNewRecordEvent.call(o, event);
@@ -170,7 +170,7 @@ Book.prototype.addNewRecordEvent = function (event){
  * View Link
  */
 //@override
-Book.prototype.viewLnkRecordEvent = function (event){
+BookBackoffice.prototype.viewLnkRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.viewLnkRecordEvent.call(o, event);
@@ -181,7 +181,7 @@ Book.prototype.viewLnkRecordEvent = function (event){
  * Edit Link
  */
 //@override
-Book.prototype.editLnkRecordEvent = function (event){
+BookBackoffice.prototype.editLnkRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.editLnkRecordEvent.call(o, event);
@@ -191,7 +191,7 @@ Book.prototype.editLnkRecordEvent = function (event){
  * Delete Link
  */
 //@override
-Book.prototype.deleteLnkRecordEvent = function (event){
+BookBackoffice.prototype.deleteLnkRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.deleteLnkRecordEvent.call(o, event);
@@ -201,7 +201,7 @@ Book.prototype.deleteLnkRecordEvent = function (event){
  * Edit Button
  */
 //@override
-Book.prototype.editBtnRecordEvent = function (event){
+BookBackoffice.prototype.editBtnRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.editBtnRecordEvent.call(o, event);
@@ -211,7 +211,7 @@ Book.prototype.editBtnRecordEvent = function (event){
  * Delete Button
  */
 //@override
-Book.prototype.deleteBtnRecordEvent = function (event){
+BookBackoffice.prototype.deleteBtnRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.deleteBtnRecordEvent.call(o, event);
@@ -222,7 +222,7 @@ Book.prototype.deleteBtnRecordEvent = function (event){
  * Cancel Button
  */
 //@override
-Book.prototype.cancelBtnRecordEvent = function (event){
+BookBackoffice.prototype.cancelBtnRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.cancelBtnRecordEvent.call(o, event);
@@ -232,7 +232,7 @@ Book.prototype.cancelBtnRecordEvent = function (event){
 * Define mandatory fields
 */
 //@override
-Book.prototype.setMandatoryFields = function (){
+BookBackoffice.prototype.setMandatoryFields = function (){
 	// Shortcut
 	//var o = this;
 	
@@ -245,7 +245,7 @@ Book.prototype.setMandatoryFields = function (){
  * Validate
  */
 //@override
-Book.prototype.validateRecord = function (){
+BookBackoffice.prototype.validateRecord = function (){
 			// Shortcut
 			var o = this;
 			return o.parent.validateRecord.call(o);
@@ -255,7 +255,7 @@ Book.prototype.validateRecord = function (){
  * Save Button
  */
 //@override
-Book.prototype.saveBtnRecordEvent = function (event){
+BookBackoffice.prototype.saveBtnRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.saveBtnRecordEvent.call(o, event);
@@ -265,7 +265,7 @@ Book.prototype.saveBtnRecordEvent = function (event){
  * Iterate selectors to get
  */
 //@override
-Book.prototype.getRequestData = function (mainSelector, all, prefix){
+BookBackoffice.prototype.getRequestData = function (mainSelector, all, prefix){
 	// Shortcut
 	var o = this;
 	return o.parent.getRequestData.call(o, o.TABLE_RECORD);
@@ -275,7 +275,7 @@ Book.prototype.getRequestData = function (mainSelector, all, prefix){
  * Iterate selectors to give
  */
 //@override
-Book.prototype.giveDomData = function (mainSelector, data){
+BookBackoffice.prototype.giveDomData = function (mainSelector, data){
 	// Shortcut
 	var o = this;
 	o.parent.giveDomData.call(o, o.TABLE_RECORD, o.getRecordData(o.records.currentRecord));
@@ -285,7 +285,7 @@ Book.prototype.giveDomData = function (mainSelector, data){
  * Reload page
  * */
 //@override
-Book.prototype.reloadPage = function(){
+BookBackoffice.prototype.reloadPage = function(){
 			// Shortcut
 			var o = this;
 			o.parent.reloadPage.call(o);
@@ -295,7 +295,7 @@ Book.prototype.reloadPage = function(){
  * Toggle Filter
  * */
 //@override
-Book.prototype.filterBtnRecordsEvent = function(event){
+BookBackoffice.prototype.filterBtnRecordsEvent = function(event){
 			// Shortcut
 			var o = this;
 			o.parent.filterBtnRecordsEvent.call(o, event);
@@ -305,7 +305,7 @@ Book.prototype.filterBtnRecordsEvent = function(event){
 * Apply Filter
 * */
 //@override
-Book.prototype.applyFilterRecordsEvent = function (event){
+BookBackoffice.prototype.applyFilterRecordsEvent = function (event){
 	
 			// Shortcut
 			var o = this;
@@ -377,7 +377,7 @@ Book.prototype.applyFilterRecordsEvent = function (event){
 * Clear Filter
 * */
 //@override
-Book.prototype.clearFilterRecordsEvent = function (event){
+BookBackoffice.prototype.clearFilterRecordsEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.clearFilterRecordsEvent.call(o, event);
@@ -388,7 +388,7 @@ Book.prototype.clearFilterRecordsEvent = function (event){
 * Filter dropdown
 * */
 //@override
-Book.prototype.filterDropdownEvent = function (event){
+BookBackoffice.prototype.filterDropdownEvent = function (event){
 
 	// Shortcut
 	var o = this;
@@ -401,7 +401,7 @@ Book.prototype.filterDropdownEvent = function (event){
 * Previous Pager
 * */
 //@override
-Book.prototype.previousPagerRecordEvent = function (event){
+BookBackoffice.prototype.previousPagerRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.previousPagerRecord.call(o);
@@ -411,7 +411,7 @@ Book.prototype.previousPagerRecordEvent = function (event){
 * Next Pager
 * */
 //@override
-Book.prototype.nextPagerRecordEvent = function (event){
+BookBackoffice.prototype.nextPagerRecordEvent = function (event){
 			// Shortcut
 			var o = this;
 			o.parent.nextPagerRecord.call(o);
@@ -422,7 +422,7 @@ Book.prototype.nextPagerRecordEvent = function (event){
 * Paging
 * */
 //@override
-Book.prototype.pageEvent = function (pageNumber, event){
+BookBackoffice.prototype.pageEvent = function (pageNumber, event){
 			// Shortcut
 			var o = this;
 			o.parent.pageEvent.call(o, pageNumber, event);
@@ -430,7 +430,7 @@ Book.prototype.pageEvent = function (pageNumber, event){
 
 //================================================================================ //
 
-Book.prototype.pageEvent = function(pageNumber, event){
+BookBackoffice.prototype.pageEvent = function(pageNumber, event){
 	
 	// Shortcut
 	var o = this;
@@ -449,7 +449,7 @@ Book.prototype.pageEvent = function(pageNumber, event){
 };
 
 
-Book.prototype.removeFilterEvent = function (event){
+BookBackoffice.prototype.removeFilterEvent = function (event){
 	
 	console.log("removeFilterEvent");
 	
@@ -469,24 +469,24 @@ Book.prototype.removeFilterEvent = function (event){
 };
 
 
-Book.prototype.generateDropdownAuthor = function(selector, isPleaseSelect){
-	
-	var o = this;
-	o.generateDropdown(selector, isPleaseSelect, new TagAPI(), {});
-		
-};
-
-Book.prototype.generateDropdownTag = function(selector, isPleaseSelect){
+BookBackoffice.prototype.generateDropdownAuthor = function(selector, isPleaseSelect){
 	
 	var o = this;
 	o.generateDropdown(selector, isPleaseSelect, new AuthorAPI(), {});
+		
+};
+
+BookBackoffice.prototype.generateDropdownTag = function(selector, isPleaseSelect){
+	
+	var o = this;
+	o.generateDropdown(selector, isPleaseSelect, new TagAPI(), {});
 	
 };
 
 /**
  * Dummy data
  * */
-Book.prototype.generateData = function(requestData){
+BookBackoffice.prototype.generateData = function(requestData){
 	
 	// Shortcut
 	var o = this;
@@ -494,11 +494,11 @@ Book.prototype.generateData = function(requestData){
 	if (!o.records.table) {
 		
 			o.records.table = [
-							{id: 1, name: 'Twelfth Night', desc: 'a comedy by William Shakespeare, believed to have been written around 1601-02 as a Twelfth Night\'s entertainment for the close of the Christmas season', author: '1', tags: ['2'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
-							{id: 2, name: 'And Then There Were None', desc: 'a detective novel by Agatha Christie. It was first published in the United Kingdom by the Collins Crime Club on 6 November 1939 as Ten Little Niggers, after the British nursery rhyme which serves as a major plot point', author: '2', imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
-							{id: 3, name: 'Romeo and Juliet', desc: 'a tragedy written early in the career of William Shakespeare about two young star-crossed lovers whose deaths ultimately reconcile their feuding families', author: '1', tags: ['1'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
-							{id: 4, name: 'The Disgraceful Duke', desc: 'It was very sweet story of a young sheltered girl named Shimona and a Duke known as \'His Disgrace\'', author: '3', tags: ['1'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'},
-							{id: 5, name: 'The Poor Governess', desc: 'Hoping to examine firsthand the world of the rich and, at the same time, prevent her friend from being compromised by a philandering aristocrat, Lara Hurley temporarily assumes the position as governess to the niece of the Marquis of Keyston', author: '3', tags: ['1','2'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/OldBook.gif'}
+							{id: 1, name: 'Twelfth Night', desc: 'a comedy by William Shakespeare, believed to have been written around 1601-02 as a Twelfth Night\'s entertainment for the close of the Christmas season', author: '1', tags: ['2'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/Oldbook.gif'},
+							{id: 2, name: 'And Then There Were None', desc: 'a detective novel by Agatha Christie. It was first published in the United Kingdom by the Collins Crime Club on 6 November 1939 as Ten Little Niggers, after the British nursery rhyme which serves as a major plot point', author: '2', imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/Oldbook.gif'},
+							{id: 3, name: 'Romeo and Juliet', desc: 'a tragedy written early in the career of William Shakespeare about two young star-crossed lovers whose deaths ultimately reconcile their feuding families', author: '1', tags: ['1'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/Oldbook.gif'},
+							{id: 4, name: 'The Disgraceful Duke', desc: 'It was very sweet story of a young sheltered girl named Shimona and a Duke known as \'His Disgrace\'', author: '3', tags: ['1'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/Oldbook.gif'},
+							{id: 5, name: 'The Poor Governess', desc: 'Hoping to examine firsthand the world of the rich and, at the same time, prevent her friend from being compromised by a philandering aristocrat, Lara Hurley temporarily assumes the position as governess to the niece of the Marquis of Keyston', author: '3', tags: ['1','2'], imageUrl: 'http://1.bp.blogspot.com/_f3SZ5Tu916o/S7EqzY009EI/AAAAAAAAPzA/uU08R-v_luE/s400/Oldbook.gif'}
 							
 						] ;
 	}
@@ -543,7 +543,7 @@ Book.prototype.generateData = function(requestData){
 //Statefull
 //Database
 //global for one instance
-var book = new Book();
+var bookBackoffice = new BookBackoffice();
 
 
 

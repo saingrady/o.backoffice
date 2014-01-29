@@ -1,14 +1,14 @@
-console.log("tag.backoffice");
+console.log("TagBackoffice.backoffice");
 
 // Auto complete
 // Normal Inheritance 
-Tag.prototype = new BaseBackoffice();
-Tag.prototype.constructor = Tag;
-Tag.prototype.parent = BaseBackoffice.prototype;
+TagBackoffice.prototype = new BaseBackoffice();
+TagBackoffice.prototype.constructor = TagBackoffice;
+TagBackoffice.prototype.parent = BaseBackoffice.prototype;
 
 // =========== Domain/JSON =============== //
 // Properties
-function Tag(){
+function TagBackoffice(){
 	
 	// Shortcut
 	var o = this;
@@ -20,18 +20,18 @@ function Tag(){
 
 //Define
 //@override
-Tag.prototype.NAME_SPACE = "page_tag";
-Tag.prototype.PAGE_RECORD = "../admin/tag.html";
-Tag.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + Tag.prototype.NAME_SPACE;
-Tag.prototype.NAV_RECORDS = "#" + Tag.prototype.NAME_SPACE + Tag.prototype.MULTIPLE_SUFFIX + "_nav";
-Tag.prototype.FILTER_RECORDS = "#" + Tag.prototype.NAME_SPACE + Tag.prototype.MULTIPLE_SUFFIX + " " + "#filters";
-Tag.prototype.TABLE_RECORDS = "#" + Tag.prototype.NAME_SPACE + Tag.prototype.MULTIPLE_SUFFIX + " " + "#tables";
-Tag.prototype.TABLE_RECORD = "#" + Tag.prototype.NAME_SPACE + " " + "#table";
-Tag.prototype.CACHE_RECORDS = Tag.prototype.NAME_SPACE + "_cache";
+TagBackoffice.prototype.NAME_SPACE = "page_tag";
+TagBackoffice.prototype.PAGE_RECORD = "../admin/tag.html";
+TagBackoffice.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + TagBackoffice.prototype.NAME_SPACE;
+TagBackoffice.prototype.NAV_RECORDS = "#" + TagBackoffice.prototype.NAME_SPACE + TagBackoffice.prototype.MULTIPLE_SUFFIX + "_nav";
+TagBackoffice.prototype.FILTER_RECORDS = "#" + TagBackoffice.prototype.NAME_SPACE + TagBackoffice.prototype.MULTIPLE_SUFFIX + " " + "#filters";
+TagBackoffice.prototype.TABLE_RECORDS = "#" + TagBackoffice.prototype.NAME_SPACE + TagBackoffice.prototype.MULTIPLE_SUFFIX + " " + "#tables";
+TagBackoffice.prototype.TABLE_RECORD = "#" + TagBackoffice.prototype.NAME_SPACE + " " + "#table";
+TagBackoffice.prototype.CACHE_RECORDS = TagBackoffice.prototype.NAME_SPACE + "_cache";
 
 // =========== DAO =============== //
 //@override
-Tag.prototype.recordAPI = new TagAPI();
+TagBackoffice.prototype.recordAPI = new TagAPI();
 
 // =========== Service =============== //
 // Methods
@@ -39,7 +39,7 @@ Tag.prototype.recordAPI = new TagAPI();
 /**
  * Dummy data
  * */
-Tag.prototype.generateData = function(requestData){
+TagBackoffice.prototype.generateData = function(requestData){
 	
 	// Shortcut
 	var o = this;
@@ -61,7 +61,7 @@ Tag.prototype.generateData = function(requestData){
 //Statefull
 //Database
 //global for one instance
-var tag = new Tag();
+var tagBackoffice = new TagBackoffice();
 
 
 

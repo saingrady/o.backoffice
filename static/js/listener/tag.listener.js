@@ -45,4 +45,4 @@ var tagListener = new TagListener();
 
 //init
 //tagListener.initListener("page_tag");
-tagListener.initListener(Tag.prototype.NAME_SPACE);
+tagListener.initListener(TagBackoffice.prototype.NAME_SPACE);

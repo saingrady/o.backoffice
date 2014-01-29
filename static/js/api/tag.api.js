@@ -15,17 +15,17 @@ TagAPI.prototype.baseBackendUrl = "/api/domain/";
 TagAPI.prototype.createRecord = function(requestData, responseHandler, failureHandler){
 										//var requestUrl = this.baseBackendUrl + "book/v10";
 										//this.postRequest(requestUrl, requestData, responseHandler, failureHandler);
-										if (!tag.records.table) {
-											tag.records.table = new Array();
+										if (!tagBackoffice.records.table) {
+											tagBackoffice.records.table = new Array();
 										}
-										tag.records.table.push(requestData);
+										tagBackoffice.records.table.push(requestData);
 										
-										responseHandler(tag.records.table);
+										responseHandler(tagBackoffice.records.table);
 									};
 
 TagAPI.prototype.getRecord = function(requestData, responseHandler, failureHandler){
 
-										responseHandler(tag.generateData());
+										responseHandler(tagBackoffice.generateData());
 										
 										/*
 										// reuse cache
@@ -48,17 +48,17 @@ TagAPI.prototype.getRecord = function(requestData, responseHandler, failureHandl
 									};		
 									
 TagAPI.prototype.updateRecord = function(id, requestData, responseHandler, failureHandler){
-	 									var record = $.grep(tag.records.table, function(e) { return e.id == id; })[0];
-	 									tag.mergeProperty(record, requestData);
-	 									responseHandler(tag.records.table);
+	 									var record = $.grep(tagBackoffice.records.table, function(e) { return e.id == id; })[0];
+	 									tagBackoffice.mergeProperty(record, requestData);
+	 									responseHandler(tagBackoffice.records.table);
 	 									
 										//var requestUrl = this.baseBackendUrl + "book/v10/" + id;
 										//this.postRequest(requestUrl, requestData, responseHandler, failureHandler);
 									};
 
 TagAPI.prototype.deleteRecord = function(id, responseHandler, failureHandler){
-										tag.deleteRecord(tag.records);
-										responseHandler(tag.records.table);
+										tagBackoffice.deleteRecord(tagBackoffice.records);
+										responseHandler(tagBackoffice.records.table);
 										//var requestUrl = this.baseBackendUrl + "book/v10/" + id;
 										//this.deleteRequest(requestUrl, responseHandler, failureHandler);
 									};		

@@ -13,12 +13,12 @@ AuthorAPI.prototype.baseBackendUrl = "/api/domain/";
  * =====================
  * */
 AuthorAPI.prototype.createRecord = function(requestData, responseHandler, failureHandler){
-										if (!author.records.table) {
-											author.records.table = new Array();
+										if (!authorBackoffice.records.table) {
+											authorBackoffice.records.table = new Array();
 										}
-										author.records.table.push(requestData);
+										authorBackoffice.records.table.push(requestData);
 										
-										responseHandler(author.records.table);
+										responseHandler(authorBackoffice.records.table);
 										
 										// request to web service
 										//var requestUrl = this.baseBackendUrl + "book/v10";
@@ -28,7 +28,7 @@ AuthorAPI.prototype.createRecord = function(requestData, responseHandler, failur
 
 AuthorAPI.prototype.getRecord = function(requestData, responseHandler, failureHandler){
 
-										responseHandler(author.generateData());
+										responseHandler(authorBackoffice.generateData());
 										
 										// request to web service
 										/*
@@ -52,9 +52,9 @@ AuthorAPI.prototype.getRecord = function(requestData, responseHandler, failureHa
 									};		
 									
 AuthorAPI.prototype.updateRecord = function(id, requestData, responseHandler, failureHandler){
-	 									var record = $.grep(author.records.table, function(e) { return e.id == id; })[0];
-	 									author.mergeProperty(record, requestData);
-	 									responseHandler(author.records.table);
+	 									var record = $.grep(authorBackoffice.records.table, function(e) { return e.id == id; })[0];
+	 									authorBackoffice.mergeProperty(record, requestData);
+	 									responseHandler(authorBackoffice.records.table);
 	 									
 										// request to web service
 										//var requestUrl = this.baseBackendUrl + "book/v10/" + id;
@@ -62,8 +62,8 @@ AuthorAPI.prototype.updateRecord = function(id, requestData, responseHandler, fa
 									};
 
 AuthorAPI.prototype.deleteRecord = function(id, responseHandler, failureHandler){
-										author.deleteRecord(author.records);
-										responseHandler(author.records.table);
+										authorBackoffice.deleteRecord(authorBackoffice.records);
+										responseHandler(authorBackoffice.records.table);
 										
 										// request to web service
 										//var requestUrl = this.baseBackendUrl + "book/v10/" + id;

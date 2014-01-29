@@ -1,14 +1,14 @@
-console.log("author.backoffice");
+console.log("AuthorBackoffice.backoffice");
 
 // Auto complete
 // Normal Inheritance 
-Author.prototype = new BaseBackoffice();
-Author.prototype.constructor = Author;
-Author.prototype.parent = BaseBackoffice.prototype;
+AuthorBackoffice.prototype = new BaseBackoffice();
+AuthorBackoffice.prototype.constructor = AuthorBackoffice;
+AuthorBackoffice.prototype.parent = BaseBackoffice.prototype;
 
 // =========== Domain/JSON =============== //
 // Properties
-function Author(){
+function AuthorBackoffice(){
 	
 	// Shortcut
 	var o = this;
@@ -20,18 +20,18 @@ function Author(){
 
 //Define
 //@override
-Author.prototype.NAME_SPACE = "page_author";
-Author.prototype.PAGE_RECORD = "../admin/author.html";
-Author.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + Author.prototype.NAME_SPACE;
-Author.prototype.NAV_RECORDS = "#" + Author.prototype.NAME_SPACE + Author.prototype.MULTIPLE_SUFFIX + "_nav";
-Author.prototype.FILTER_RECORDS = "#" + Author.prototype.NAME_SPACE + Author.prototype.MULTIPLE_SUFFIX + " " + "#filters";
-Author.prototype.TABLE_RECORDS = "#" + Author.prototype.NAME_SPACE + Author.prototype.MULTIPLE_SUFFIX + " " + "#tables";
-Author.prototype.TABLE_RECORD = "#" + Author.prototype.NAME_SPACE + " " + "#table";
-Author.prototype.CACHE_RECORDS = Author.prototype.NAME_SPACE + "_cache";
+AuthorBackoffice.prototype.NAME_SPACE = "page_author";
+AuthorBackoffice.prototype.PAGE_RECORD = "../admin/author.html";
+AuthorBackoffice.prototype.CONTAINER_RECORD = "#homeContainer" + " " + "#" + AuthorBackoffice.prototype.NAME_SPACE;
+AuthorBackoffice.prototype.NAV_RECORDS = "#" + AuthorBackoffice.prototype.NAME_SPACE + AuthorBackoffice.prototype.MULTIPLE_SUFFIX + "_nav";
+AuthorBackoffice.prototype.FILTER_RECORDS = "#" + AuthorBackoffice.prototype.NAME_SPACE + AuthorBackoffice.prototype.MULTIPLE_SUFFIX + " " + "#filters";
+AuthorBackoffice.prototype.TABLE_RECORDS = "#" + AuthorBackoffice.prototype.NAME_SPACE + AuthorBackoffice.prototype.MULTIPLE_SUFFIX + " " + "#tables";
+AuthorBackoffice.prototype.TABLE_RECORD = "#" + AuthorBackoffice.prototype.NAME_SPACE + " " + "#table";
+AuthorBackoffice.prototype.CACHE_RECORDS = AuthorBackoffice.prototype.NAME_SPACE + "_cache";
 
 // =========== DAO =============== //
 //@override
-Author.prototype.recordAPI = new AuthorAPI();
+AuthorBackoffice.prototype.recordAPI = new AuthorAPI();
 
 // =========== Service =============== //
 // Methods
@@ -39,7 +39,7 @@ Author.prototype.recordAPI = new AuthorAPI();
 /**
  * Dummy data
  * */
-Author.prototype.generateData = function(requestData){
+AuthorBackoffice.prototype.generateData = function(requestData){
 	
 	// Shortcut
 	var o = this;
@@ -62,7 +62,7 @@ Author.prototype.generateData = function(requestData){
 //Statefull
 //Database
 //global for one instance
-var author = new Author();
+var authorBackoffice = new AuthorBackoffice();
 
 
 

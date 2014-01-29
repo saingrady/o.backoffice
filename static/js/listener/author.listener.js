@@ -45,5 +45,5 @@ var authorListener = new AuthorListener();
 
 //init
 //authorListener.initListener("page_author");
-authorListener.initListener(Author.prototype.NAME_SPACE);
+authorListener.initListener(AuthorBackoffice.prototype.NAME_SPACE);
 

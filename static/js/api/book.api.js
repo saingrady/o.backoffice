@@ -15,17 +15,17 @@ BookAPI.prototype.baseBackendUrl = "/api/domain/";
 BookAPI.prototype.createRecord = function(requestData, responseHandler, failureHandler){
 										//var requestUrl = this.baseBackendUrl + "book/v10";
 										//this.postRequest(requestUrl, requestData, responseHandler, failureHandler);
-										if (!book.records.table) {
-											book.records.table = new Array();
+										if (!bookBackoffice.records.table) {
+											bookBackoffice.records.table = new Array();
 										}
-										book.records.table.push(requestData);
+										bookBackoffice.records.table.push(requestData);
 										
-										responseHandler(book.records.table);
+										responseHandler(bookBackoffice.records.table);
 									};
 
 BookAPI.prototype.getRecord = function(requestData, responseHandler, failureHandler){
 
-										responseHandler(book.generateData(requestData));
+										responseHandler(bookBackoffice.generateData(requestData));
 										
 										/*
 										// reuse cache
@@ -48,17 +48,17 @@ BookAPI.prototype.getRecord = function(requestData, responseHandler, failureHand
 									};		
 									
 BookAPI.prototype.updateRecord = function(id, requestData, responseHandler, failureHandler){
-	 									var record = $.grep(book.records.table, function(e) { return e.id == id; })[0];
-	 									book.mergeProperty(record, requestData);
-	 									responseHandler(book.records.table);
+	 									var record = $.grep(bookBackoffice.records.table, function(e) { return e.id == id; })[0];
+	 									bookBackoffice.mergeProperty(record, requestData);
+	 									responseHandler(bookBackoffice.records.table);
 	 									
 										//var requestUrl = this.baseBackendUrl + "book/v10/" + id;
 										//this.postRequest(requestUrl, requestData, responseHandler, failureHandler);
 									};
 
 BookAPI.prototype.deleteRecord = function(id, responseHandler, failureHandler){
-										book.deleteRecord(book.records);
-										responseHandler(book.records.table);
+										bookBackoffice.deleteRecord(bookBackoffice.records);
+										responseHandler(bookBackoffice.records.table);
 										//var requestUrl = this.baseBackendUrl + "book/v10/" + id;
 										//this.deleteRequest(requestUrl, responseHandler, failureHandler);
 									};		

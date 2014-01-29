@@ -1,35 +1,35 @@
-console.log("home.backoffice");
+console.log("HomeBackoffice.backoffice");
 
 //Auto complete
 //Normal Inheritance 
-Home.prototype = new BaseBackoffice();
-Home.prototype.constructor = Home;
-Home.prototype.parent = BaseBackoffice.prototype;
+HomeBackoffice.prototype = new BaseBackoffice();
+HomeBackoffice.prototype.constructor = HomeBackoffice;
+HomeBackoffice.prototype.parent = BaseBackoffice.prototype;
 
 // Properties
-function Home(){
+function HomeBackoffice(){
 	
 	// Shortcut
 	var o = this;
 	BaseBackoffice.apply(o, arguments);
 	
 	//if plug-ins style
-	//$.extend(Home.prototype, BaseBackoffice.prototype);
+	//$.extend(HomeBackoffice.prototype, BaseBackoffice.prototype);
 
 }
 
 // Define
-Home.prototype.CONTAINER_DEFAULT = "#homeContainer #page_default";
-Home.prototype.PAGE_DEFAULT = "../admin/default.html";
+HomeBackoffice.prototype.CONTAINER_DEFAULT = "#homeContainer #page_default";
+HomeBackoffice.prototype.PAGE_DEFAULT = "../admin/default.html";
 
-Home.prototype.CONTAINER_BOOKS = "#homeContainer #page_book-s";
-Home.prototype.PAGE_BOOKS = "../admin/book-s.html";
+HomeBackoffice.prototype.CONTAINER_BOOKS = "#homeContainer #page_book-s";
+HomeBackoffice.prototype.PAGE_BOOKS = "../admin/book-s.html";
 
-Home.prototype.CONTAINER_AUTHORS = "#homeContainer #page_author-s";
-Home.prototype.PAGE_AUTHORS = "../admin/author-s.html";
+HomeBackoffice.prototype.CONTAINER_AUTHORS = "#homeContainer #page_author-s";
+HomeBackoffice.prototype.PAGE_AUTHORS = "../admin/author-s.html";
 
-Home.prototype.CONTAINER_TAGS = "#homeContainer #page_tag-s";
-Home.prototype.PAGE_TAGS = "../admin/tag-s.html";
+HomeBackoffice.prototype.CONTAINER_TAGS = "#homeContainer #page_tag-s";
+HomeBackoffice.prototype.PAGE_TAGS = "../admin/tag-s.html";
 
 
 // Methods
@@ -38,7 +38,7 @@ Home.prototype.PAGE_TAGS = "../admin/tag-s.html";
  * init default home page
  * */
 //@override
-Home.prototype.initRecords = function (){
+HomeBackoffice.prototype.initRecords = function (){
 	
 			// Shortcut
 			var o = this;
@@ -50,7 +50,7 @@ Home.prototype.initRecords = function (){
 /**
  * Load page
  * */
-Home.prototype.loadPage = function (container, page){
+HomeBackoffice.prototype.loadPage = function (container, page){
 	
 	
 	// Shortcut
@@ -72,7 +72,7 @@ Home.prototype.loadPage = function (container, page){
  * html page name to load into the homeContainer
  * @param html
  */
-Home.prototype.loadHomeContainer = function (html){
+HomeBackoffice.prototype.loadHomeContainer = function (html){
 	
 			// Shortcut
 			var o = this;
@@ -86,11 +86,11 @@ Home.prototype.loadHomeContainer = function (html){
 /**
  * Brand
  * */
-Home.prototype.openBrandEvent = function (event){
+HomeBackoffice.prototype.openBrandEvent = function (event){
 	
 	// Shortcut
 	var o = this;
-	o.updateBasket(home);
+	o.updateBasket(homeBackoffice);
 	o.loadPage(o.CONTAINER_DEFAULT, o.PAGE_DEFAULT);
 
 };
@@ -98,11 +98,11 @@ Home.prototype.openBrandEvent = function (event){
 /**
  * Book
  * */
-Home.prototype.openBookEvent = function (event){
+HomeBackoffice.prototype.openBookEvent = function (event){
 	
 	// Shortcut
 	var o = this;
-	o.updateBasket(book);
+	o.updateBasket(bookBackoffice);
 	o.loadPage(o.CONTAINER_BOOKS, o.PAGE_BOOKS);
 	
 };
@@ -110,11 +110,11 @@ Home.prototype.openBookEvent = function (event){
 /**
  * Author
  * */
-Home.prototype.openAuthorEvent = function (event){
+HomeBackoffice.prototype.openAuthorEvent = function (event){
 	
 	// Shortcut
 	var o = this;
-	o.updateBasket(author);
+	o.updateBasket(authorBackoffice);
 	o.loadPage(o.CONTAINER_AUTHORS, o.PAGE_AUTHORS);
 	
 };
@@ -122,18 +122,18 @@ Home.prototype.openAuthorEvent = function (event){
 /**
  * Tag
  * */
-Home.prototype.openTagEvent = function (event){
+HomeBackoffice.prototype.openTagEvent = function (event){
 	
 	// Shortcut
 	var o = this;
-	o.updateBasket(tag);
+	o.updateBasket(tagBackoffice);
 	o.loadPage(o.CONTAINER_TAGS, o.PAGE_TAGS);
 	
 };
 
 
 /***/
-Home.prototype.confirmDeleteEvent = function (event){
+HomeBackoffice.prototype.confirmDeleteEvent = function (event){
 	
 			// Shortcut
 			//var o = this;
@@ -157,7 +157,7 @@ Home.prototype.confirmDeleteEvent = function (event){
 //Statefull
 //Database
 //global for one instance
-var home = new Home();
+var homeBackoffice = new HomeBackoffice();
 
 
 
