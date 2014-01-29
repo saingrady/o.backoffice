@@ -472,6 +472,8 @@ BookBackoffice.prototype.removeFilterEvent = function (event){
 BookBackoffice.prototype.generateDropdownAuthor = function(selector, isPleaseSelect){
 	
 	var o = this;
+	
+	// new AuthorAPI(), new instantiation, methods matter, attributes not
 	o.generateDropdown(selector, isPleaseSelect, new AuthorAPI(), {});
 		
 };
@@ -479,6 +481,7 @@ BookBackoffice.prototype.generateDropdownAuthor = function(selector, isPleaseSel
 BookBackoffice.prototype.generateDropdownTag = function(selector, isPleaseSelect){
 	
 	var o = this;
+	// new TagAPI(), new instantiation, methods matter, attributes not
 	o.generateDropdown(selector, isPleaseSelect, new TagAPI(), {});
 	
 };
