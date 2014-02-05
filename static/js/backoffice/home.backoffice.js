@@ -45,6 +45,12 @@ HomeBackoffice.prototype.initRecords = function (){
 			
 			// just message
 			o.info("Welcome O.Backoffice");
+			
+			// still could call global functions, not depends on object
+			// It works fine
+			testGlobalFunction("testing...");
+			
+
 };
 
 /**

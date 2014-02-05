@@ -26,3 +26,7 @@ $( document ).ajaxComplete(function( event,request, settings ) {
 		}
 	}
 });
+
+function testGlobalFunction(arg){
+	alert(arg);
+}
