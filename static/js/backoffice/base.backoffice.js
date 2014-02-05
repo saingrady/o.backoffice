@@ -13,6 +13,11 @@ function BaseBackoffice(){
 	// Shortcut
 	var o = this;
 	
+	// it is alternative way, homeContainer DOM's data storage with different keys explicitly
+	// to store the states of global objects of each module
+	// but abstract for development without auto complete 
+
+
 	//listing
     o.records = new Object();
     
