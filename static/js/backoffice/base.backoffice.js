@@ -5,6 +5,7 @@
 
 console.log("base.backoffice");
 
+// Backoffice = Controller >> Service >> View
 
 //Properties
 function BaseBackoffice(){
