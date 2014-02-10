@@ -18,6 +18,9 @@ function BaseBackoffice(){
 	// but abstract for development without auto complete 
 
 
+	// ------------------------- start Page object -------------------------- //
+	// o.page = new Page();
+	
 	//listing
     o.records = new Object();
     
@@ -39,7 +42,8 @@ function BaseBackoffice(){
     o.records.paging.cursorKeys = new Array();
     o.records.paging.pager = new Object();
     o.records.paging.from = '';
-    
+
+	// ------------------------- end Page object -------------------------- //
     
 	o.validateFunctionName;
 	o.PAGE_SIZE = 10;
@@ -50,6 +54,9 @@ function BaseBackoffice(){
 //Static: super global, stateful, IoC, database
 //basket reference to current page and record(s)
 //basket is generic, it could be any object like book, user, etc...
+
+//alternative basket, $("#homeContainer").data("pageID", pageObject);
+
 BaseBackoffice.basket = new Object();
 BaseBackoffice.cart = new Object(); // reserved
 BaseBackoffice.confirmDelete = false;
