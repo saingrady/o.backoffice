@@ -627,7 +627,7 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
 	// Shortcut
 	var o = this;
 	
-	// define mandatory
+	// #1 @override able, before api call, should define custom mandatory ----------------------------- //
 	o.setMandatoryFields();
 	
 	//validation
@@ -640,6 +640,7 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
 	//resetPaging(brands);
 
 
+	// #2 @override able, should get custom request data ---------------------------------------------- //
 	//var requestData = Converter.prototype.getJsonString(o.getRequestData(o.TABLE_RECORD));
 	var requestData = o.getRequestData(o.TABLE_RECORD);
 	console.log("requestData: ", requestData);
@@ -649,7 +650,11 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
   	// OLD
   	console.log("old");
   	console.log(requestData);
-      o.recordAPI.updateRecord(o.records.currentData.id, requestData, function(jRecord){
+  	
+	// #3 @override able, api call, should get custom api --------------------------------------------- //
+    o.recordAPI.updateRecord(o.records.currentData.id, requestData, function(jRecord){
+
+    	// #4 @override able, after api call, should get custom response handler ---------------------- //
       	o.prepareMsg("Updated successfully.");
       	//reload page
       	o.reloadPage();
@@ -658,7 +663,7 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
   } else {
       // NEW
   	console.log("new");
-      console.log(requestData);
+    console.log(requestData);
   	o.recordAPI.createRecord(requestData, function(jRecord){
   		o.prepareMsg("Created successfully.");
   		//reload page
@@ -667,6 +672,71 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
   }
 
 };
+
+/**
+* Dynamic Action
+*/
+//can @override
+BaseBackoffice.prototype.dynamicAction = function (){
+
+	//event, dynamicAPI, requestData, id, beforeAction, afterAction, errorAction, successAction, completeAction
+	
+	// Shortcut
+	var o = this;
+	
+	// #1 @override able, before api call, should define custom mandatory ----------------------------- //
+	/*  
+	 * validation, 
+	 * initialization, 
+	 * etc. 
+	 */
+	
+
+	// #2 @override able, should get custom request data ---------------------------------------------- //
+	/*
+	 * JS object for @RequestParam
+	 * var requestData = o.getRequestData(o.TABLE_RECORD);
+	 * 
+	 * JSON string for @RequestBody
+	 * var requestData = Converter.prototype.getJsonString(o.getRequestData(o.TABLE_RECORD));
+	 */
+
+	// #3 @override able, api call, should get custom api --------------------------------------------- //
+	o.callMe(o, arguments);
+
+    // #4 @override able, error api call, should get custom response handler ---------------------- //
+    // #5 @override able, success api call, should get custom response handler ---------------------- //
+    // #6 @override able, complete api call, should get custom response handler ---------------------- //
+    
+
+    // #7 @override able, after api call, should get custom response handler ---------------------- //
+
+}
+
+/**
+ * 
+ * Call any function with its corresponding parameters
+ * 
+ * alert(callMe(Math.max, 1, 2, 3));
+ * alert(callMe(Math.max, 1, 2, 3, 4, 5));
+ * 
+ * callMe(test, "hello", "world");
+ * callMe(test, "hello");
+ * 
+ * */
+BaseBackoffice.prototype.callMe = function () {
+    // first parameters
+    var fn = arguments[0];
+    // rest parameters
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    // strict on arguments match or not
+    if (args.length < fn.length) {
+       throw(["Expected", fn.length, "arguments, got", args.length].join(" "));
+    }
+
+    return fn.apply(this, args);
+}
 
 /**
 * Reload page
