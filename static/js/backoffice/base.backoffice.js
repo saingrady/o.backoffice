@@ -2403,7 +2403,7 @@ BaseBackoffice.prototype.generateDropdown = function(selector, isPleaseSelect, a
 	
 	api.getRecord(requestData, function(jRecords){
 		
-		$.each(jRecords, function(index, value){
+		$.each(jRecords.items ? jRecords.items : jRecords, function(index, value){
 			$(selector).append($('<option></option>').val(value["id"]).html(value["name"]));
 		});
 		
