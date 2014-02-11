@@ -469,6 +469,19 @@ BookBackoffice.prototype.removeFilterEvent = function (event){
 };
 
 
+BookBackoffice.prototype.testEvent = function (event){
+	
+	console.log("testEvent");
+	
+	// Shortcut
+	var o = this;
+	var that = event.target;
+	alert($(that).attr("id"));
+	
+};
+
+
+
 BookBackoffice.prototype.generateDropdownAuthor = function(selector, isPleaseSelect){
 	
 	var o = this;

@@ -37,7 +37,11 @@ BookListener.prototype.initListener = function (nameSpace){
 	var o = this;
 	o.parent.initListener.call(o, nameSpace);
 	
+	// extra listener
+	
 	o.setDelegateClickListener(".removeFilter", "removeFilterEvent");
+	// or
+	o.setDelegateClickListener("#test", bookBackoffice.testEvent);
 	
 };
 

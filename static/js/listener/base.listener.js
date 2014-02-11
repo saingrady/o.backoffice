@@ -189,15 +189,22 @@ BaseListener.prototype.setDelegateDropListener = function (selector, handler){
 
 BaseListener.prototype.EventHandler = function (event, handler){
 	
-        //cannot reference to obj at runtime, so need extra function
-        //obj[handler](event);
-        //this.getBasket()[handler](event);
-    	if ( BaseBackoffice.basket[handler] ) {
-    		BaseBackoffice.basket[handler](event);
-    	} else if (homeBackoffice[handler]){
-    		// default pass to home
-    		homeBackoffice[handler](event);
-    	} else {
-    		console.log("cannot find handler " + handler);
-    	}
+		if(handler instanceof Function) {
+			// basket independent / basket-free 
+			handler(event);
+		} else {
+			
+			// basket dependent / basket-based 
+			//cannot reference to obj at runtime, so need extra function
+	        //obj[handler](event);
+	        //this.getBasket()[handler](event);
+	    	if ( BaseBackoffice.basket[handler] ) {
+	    		BaseBackoffice.basket[handler](event);
+	    	} else if (homeBackoffice[handler]){
+	    		// default pass to home
+	    		homeBackoffice[handler](event);
+	    	} else {
+	    		console.log("cannot find handler " + handler);
+	    	}
+		}
 };
