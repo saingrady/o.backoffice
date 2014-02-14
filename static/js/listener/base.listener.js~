@@ -98,7 +98,7 @@ BaseListener.prototype.setClickListener = function (selector, handler){
  * @param selectorString
  * @param handler
  */
-BaseListener.prototype.setOnClickListener = function (selectorString, handler){
+BaseListener.prototype.setDelegateClickListener = function (selectorString, handler){
     
 	console.log(this);
 	
