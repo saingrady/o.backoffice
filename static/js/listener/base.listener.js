@@ -98,15 +98,18 @@ BaseListener.prototype.setClickListener = function (selector, handler){
  * @param selectorString
  * @param handler
  */
-BaseListener.prototype.setOnClickListener = function (selectorString, handler){
+BaseListener.prototype.setOnClickListener = function (selectorString, handler, context){
     
 	console.log(this);
 	
 	// Shortcut
 	var o = this;
 
+	if (!context) {
+		context = 'body';
+	}
 	// on() is alternative to delegate()
-	$('body').on ( "click", selectorString, function(event) {
+	$(context).on ( "click", selectorString, function(event) {
         	BaseListener.prototype.EventHandler.call(o, event, handler);
         } ) ;
 
@@ -122,7 +125,7 @@ BaseListener.prototype.setOnClickListener = function (selectorString, handler){
  * @param selectorString
  * @param handler
  */
-BaseListener.prototype.setDelegateClickListener = function (selectorString, handler){
+BaseListener.prototype.setDelegateClickListener = function (selectorString, handler, context){
     
 	/*
 	$(document).delegate(selector, "click", function() {
@@ -141,9 +144,12 @@ BaseListener.prototype.setDelegateClickListener = function (selectorString, hand
 	
 	console.log(this);
 	
+	if (!context) {
+		context = 'body';
+	}
 	// Shortcut
 	var o = this;
-	$('body').delegate(selectorString, "click", function(event) {
+	$(context).delegate(selectorString, "click", function(event) {
     		BaseListener.prototype.EventHandler.call(o, event, handler);
 	});  
 
