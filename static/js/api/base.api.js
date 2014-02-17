@@ -6,20 +6,27 @@ console.log("base.api");
 function BaseAPI() {
 }
 	
+
 // GET 
 BaseAPI.prototype.getRequest = function(requestUrl,requestData,responseHandler,failureHandler) {
+											// Good to see Call Stack with breakpoint until here
+
 											// return is useful for synchronous request
 											return this.request("GET", requestUrl, requestData, "json", "application/json", responseHandler, failureHandler);
 									};
 
 // POST
 BaseAPI.prototype.postRequest = function(requestUrl,requestData,responseHandler,failureHandler) {
+											// Good to see Call Stack with breakpoint until here
+	
 											// return is useful for synchronous request
 											return this.request("POST", requestUrl, requestData, "json", "application/json", responseHandler, failureHandler);
 									};
 
 // DELETE 
 BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHandler){
+											// Good to see Call Stack with breakpoint until here
+											
 											// return is useful for synchronous request
 											return this.request("DELETE", requestUrl, {}, "json", "application/json", responseHandler, failureHandler);
 									};
@@ -28,7 +35,9 @@ BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHan
 
 // Ajax Request
 BaseAPI.prototype.request = function (requestMethod, requestUrl, requestData, dataType, contentType, responseHandler,failureHandler){
-							                
+
+											// Good to see Call Stack with breakpoint until here
+	
 							                $.ajax({
 							                    type: requestMethod,
 							                    url: requestUrl,
@@ -52,8 +61,10 @@ BaseAPI.prototype.request = function (requestMethod, requestUrl, requestData, da
 
 // Error Handler
 BaseAPI.prototype.failureHandler = function(jqXHR, textStatus, errorThrown){
-
-											switch(jqXHR.status){
+	
+											    // Good to see Call Stack with breakpoint until here
+	
+												switch(jqXHR.status){
 												case 401:
 													//alert("What is 401 ?");	
 													baseBackoffice.error("401: Unauthorized");

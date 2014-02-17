@@ -221,6 +221,7 @@ BaseListener.prototype.setDelegateDropListener = function (selectorString, handl
 BaseListener.prototype.EventHandler = function (event, handler){
 	
 		// Event Listener Breakpoints alternative, to see where is handler
+		// Good to see Call Stack with breakpoint from here 
 
 		if(handler instanceof Function) {
 			// basket independent / basket-free 
