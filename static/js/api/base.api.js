@@ -5,7 +5,8 @@ console.log("base.api");
 
 function BaseAPI() {
 }
-	
+
+// Best to see Call Stack with breakpoint until any Network Path (Chrome browser)
 
 // GET 
 BaseAPI.prototype.getRequest = function(requestUrl,requestData,responseHandler,failureHandler) {
