@@ -90,6 +90,13 @@ Converter.prototype.remainTimes = function (endTime, currentTime){
 
 
 Converter.prototype.getUTCDate = function (date){
+	// UTC +00
+	// UTC00 = date.getTime() + (date.getTimezoneOffset() * 60000);
+	
+	// UTC -8
+	// timeZoneOffset = -8;
+	// new Date(UTC00 + (timeZoneOffset * 3600000));
+
 	return date.getUTCDate() + "/" + Converter.prototype.month[date.getUTCMonth()] + "/" + date.getUTCFullYear() + " " + 
     (date.getUTCHours() < 10 ? '0' : '') + date.getUTCHours() + ":" + (date.getUTCMinutes() < 10 ? '0' : '') + date.getUTCMinutes() + ":"  + (date.getUTCSeconds() < 10 ? '0' : '') + date.getUTCSeconds();
 };
