@@ -1030,6 +1030,10 @@ BaseBackoffice.prototype.isValid = function (selectors, offset){
 	
 	  // initialize validator for a bunch of input fields
 	  var inputs = $(selectors).validator(offset);
+	  
+	  // custom position and message html
+	  // var inputs = $(selectors).validator({position: 'top  center', message: '<div><em/><i class="icon-remove-sign"></i></div>'});
+	  
 	  // perform validation programmatically
 	  return inputs.data("validator").checkValidity();
 	  
