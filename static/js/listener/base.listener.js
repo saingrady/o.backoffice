@@ -112,6 +112,10 @@ BaseListener.prototype.setOnClickListener = function (selectorString, handler, c
 	$(context).on ( "click", selectorString, function(event) {
         	BaseListener.prototype.EventHandler.call(o, event, handler);
         } ) ;
+	
+	// more event, custom selector 
+	// .on("blur","#xxx input[data-property='yyy']"
+
 
 };
 
