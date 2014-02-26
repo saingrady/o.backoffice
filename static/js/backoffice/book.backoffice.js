@@ -6,12 +6,18 @@ BookBackoffice.prototype = new BaseBackoffice();
 BookBackoffice.prototype.constructor = BookBackoffice;
 BookBackoffice.prototype.parent = BaseBackoffice.prototype;
 
+// Global Shortcut
+// var o;
+
 // =========== Domain/JSON =============== //
 // Properties
 function BookBackoffice(){
 	
 	// Shortcut
 	var o = this;
+	
+	// Global Shortcut 
+	// o = this;
 	BaseBackoffice.apply(o, arguments);
 	
 }
