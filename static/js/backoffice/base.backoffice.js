@@ -14,6 +14,8 @@ function BaseBackoffice(){
 	// Shortcut
 	var o = this;
 	
+	// Global objects should store on Web Storage like sessionStorage Object
+	
 	// it is alternative way, homeContainer DOM's data storage with different keys explicitly
 	// to store the states of global objects of each module
 	// but abstract for development without auto complete 
