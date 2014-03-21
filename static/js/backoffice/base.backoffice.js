@@ -1913,8 +1913,13 @@ BaseBackoffice.prototype.sendFile = function (name, file){
 	        		*/
 	        	
 	        		var biggest_image_dimension = Math.max( image.naturalWidth, image.naturalHeight );
-	                // upload image immediately after preview image, it should be asynchronous
-			        o.sendFormDataOne(name, file, biggest_image_dimension);
+
+	        		if (biggest_image_dimension > 1600) {
+	        			alert ("Maximum image size is 1600px.");
+	        		} else {
+		                // upload image immediately after preview image, it should be asynchronous
+				        o.sendFormDataOne(name, file, biggest_image_dimension);
+	        		}
 	        		
 		        
 	        };
