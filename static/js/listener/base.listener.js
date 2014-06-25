@@ -228,10 +228,13 @@ BaseListener.prototype.EventHandler = function (event, handler){
 		// Good to see Call Stack with breakpoint from here 
 
 		if(handler instanceof Function) {
+			// tracking
+			console.log(handler.name);
 			// basket independent / basket-free 
 			handler(event);
 		} else {
-			
+			// tracking
+			console.log(handler);
 			// basket dependent / basket-based 
 			//cannot reference to obj at runtime, so need extra function
 	        //obj[handler](event);
