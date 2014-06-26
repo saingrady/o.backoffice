@@ -30,3 +30,13 @@ $( document ).ajaxComplete(function( event,request, settings ) {
 function testGlobalFunction(arg){
 	alert(arg);
 }
+
+/**
+ * get date by timezone
+ */
+function getDateByTimeZoneOffset(timeZoneOffset){
+	var date = new Date();
+	var UTC00 = date.getTime() + (date.getTimezoneOffset() * 60000);
+	var startDate = new Date(UTC00 + (timeZoneOffset * 3600000));
+	return startDate;
+}
