@@ -622,7 +622,7 @@ BaseBackoffice.prototype.validateRecord = function (){
 * Save Button
 */
 //can @override
-BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
+BaseBackoffice.prototype.saveBtnRecordEvent = function (event, callback){
 	
 	console.log("saveBtnRecord");
 	
@@ -649,28 +649,45 @@ BaseBackoffice.prototype.saveBtnRecordEvent = function (event){
 
 	
 	if ((o.records.currentData !== undefined) && (o.records.currentData !== null)) {
-  	// OLD
-  	console.log("old");
-  	console.log(requestData);
-  	
-	// #3 @override able, api call, should get custom api --------------------------------------------- //
-    o.recordAPI.updateRecord(o.records.currentData.id, requestData, function(jRecord){
-
-    	// #4 @override able, after api call, should get custom response handler ---------------------- //
-      	o.prepareMsg("Updated successfully.");
-      	//reload page
-      	o.reloadPage();
-      }, o.recordAPI.failureHandler);
-  	
+	  	// OLD
+	  	console.log("old");
+	  	console.log(requestData);
+	  	
+		// #3 @override able, api call, should get custom api --------------------------------------------- //
+	    o.recordAPI.updateRecord(o.records.currentData.id, requestData, function(jRecord){
+	
+	      	if (callback) {
+	          	// custom callback
+	      		
+	      		callback()
+	      	} else {
+	          	// default callback
+	      		
+	        	// #4 @override able, after api call, should get custom response handler ---------------------- //
+	          	o.prepareMsg("Updated successfully.");
+	          	//reload page
+	          	o.reloadPage();
+	      	}
+	      }, o.recordAPI.failureHandler);
+	    
   } else {
-      // NEW
-  	console.log("new");
-    console.log(requestData);
-  	o.recordAPI.createRecord(requestData, function(jRecord){
-  		o.prepareMsg("Created successfully.");
-  		//reload page
-  		o.reloadPage();
-  	}, o.recordAPI.failureHandler);
+	  	// NEW
+  		console.log("new");
+	    console.log(requestData);
+	  	o.recordAPI.createRecord(requestData, function(jRecord){
+	  		
+	  		if (callback) {
+	          	// custom callback
+	      		
+	      		callback()
+	      	} else {
+	          	// default callback
+		  		o.prepareMsg("Created successfully.");
+		  		//reload page
+		  		o.reloadPage();
+	      	}
+	  		
+	  	}, o.recordAPI.failureHandler);
   }
 
 };
