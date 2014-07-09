@@ -13,6 +13,7 @@ function BaseBackoffice(){
 	
 	// Shortcut
 	var o = this;
+	//var _self = this;
 	
 	// Global objects should store on Web Storage like sessionStorage Object
 	
