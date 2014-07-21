@@ -1213,18 +1213,26 @@ BaseBackoffice.prototype.hideAllNotify = function (){
  * html page name to load into the mainContainer
  * @param html
  */
-BaseBackoffice.prototype.loadHtmlContent = function (selector, html){
+BaseBackoffice.prototype.loadHtmlContent = function (selector, html, callback){
 	
 		// Shortcut
 		var o = this;
 	
 	  	// console.log("loadHtmlContain");
 	  	o.processing();
-	  	$(selector).html("<p>loading...</p>").load(html);
-	  	o.resetVisible('#homeContainer [id^="page_"]', selector);
+	  	$(selector).html("<p>loading...</p>").load(html, function(responseText, textStatus, jqXHR){
+	  		
+	  		o.resetVisible('#homeContainer [id^="page_"]', selector);
+		  	
+		  	// clean error
+		  	$(".error").remove();
+		  	
+	  		if (callback) {
+	  			callback();
+	  		}
+	  		
+	  	});
 	  	
-	  	// clean error
-	  	$(".error").remove();
 };
 	
 /***/
