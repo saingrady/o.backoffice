@@ -221,7 +221,9 @@ BaseListener.prototype.setDelegateDropListener = function (selectorString, handl
     });
 };
 
-
+/**
+ * Dispatcher 
+ * */
 BaseListener.prototype.EventHandler = function (event, handler){
 	
 		// Event Listener Breakpoints alternative, to see where is handler
