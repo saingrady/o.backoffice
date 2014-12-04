@@ -8,6 +8,7 @@ BookBackoffice.prototype.parent = BaseBackoffice.prototype;
 
 // Global Shortcut
 // var o;
+// var bookBackoffice; // access from outside - page for example
 
 // =========== Domain/JSON =============== //
 // Properties
@@ -15,6 +16,8 @@ function BookBackoffice(){
 	
 	// Shortcut
 	var o = this;
+	
+	//bookBackoffice = this; // access from outside - page for example
 	
 	// Global Shortcut 
 	// o = this;
