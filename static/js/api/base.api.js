@@ -34,7 +34,7 @@ BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHan
 
 										
 
-// Back-end
+// Trace Back-end
 // Ajax Request
 BaseAPI.prototype.request = function (requestMethod, requestUrl, requestData, dataType, contentType, responseHandler,failureHandler){
 
