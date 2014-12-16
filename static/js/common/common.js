@@ -15,6 +15,7 @@ Common.prototype.test = function (){
 // set up once and one place only
 jQuery.ajaxSetup({
 	// not use cache of browser
+	// ajax request always reached backend
     cache: false,
     beforeSend: function (jqXHR, settings) {
         jqXHR.setRequestHeader('Authorization', ("Basic " + window.btoa("o:o")));
