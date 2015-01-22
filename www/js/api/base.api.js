@@ -36,7 +36,7 @@ BaseAPI.prototype.deleteRequest = function(requestUrl,responseHandler,failureHan
 
 // Trace Back-end
 // Ajax Request
-BaseAPI.prototype.request = function (requestMethod, requestUrl, requestData, dataType, contentType, successCallback,failureCallback){
+BaseAPI.prototype.request = function (requestMethod, requestUrl, requestData, dataType, contentType, successCallback, failureCallback, finalCallback){
 
 											// Good to see Call Stack with breakpoint until here
 	
@@ -62,6 +62,11 @@ BaseAPI.prototype.request = function (requestMethod, requestUrl, requestData, da
 							                    },
 							                    complete: function(jqXHR, textStatus) {
 							                        // can track something
+							                    	// A function to be called when the request finishes
+							                    	// after success and error callbacks are executed
+							                    	if (finalCallback) {
+							                    		finalCallback(jqXHR, textStatus);
+							                    	}
 							                    }
 							                });
 							                
